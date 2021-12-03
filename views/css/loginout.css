@@ -1,0 +1,58 @@
+*{margin:0; padding:0}
+
+body, html{
+    height: 100vh;
+    width: 100vw;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgb(241, 241, 241);
+}
+
+img{
+    position: fixed;
+    top: 50px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    min-width: 500px;
+    background: white;
+    padding: 15px;
+}
+
+form h1{
+    margin: 20px auto 20px auto;
+}
+
+form > *{
+    margin: 15px;
+}
+
+label{
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="text"], input[type="email"], input[type="password"]{
+    height: 35px;
+    font-size: 16px;
+}
+
+input[type=submit]{
+    font-size: 30px;
+    background: rgb(70, 148, 72);
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover{
+    background: rgb(88, 186, 91);
+}
