@@ -5,6 +5,8 @@ module.exports = (app)=>{
 
     //USERS
     app.get("/user/register", (req, res)=>res.sendFile(`${views}/user/register.html`));
+    app.get("/user/login", (req, res)=>res.sendFile(`${views}/user/login.html`));
+    app.get("/user/dashboard", (req, res)=>res.sendFile(`${views}/user/dashboard.html`));
 
     app.post("/user/register", user.create);
 

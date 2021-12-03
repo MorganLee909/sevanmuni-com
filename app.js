@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const compression = require("compression");
+const session = require("cookie-session");
+const bodyParser = require("body-parser");
 const https = require("https");
 const fs = require("fs");
 
@@ -36,6 +38,14 @@ mongoose.connect("mongodb://127.0.0.1/sevanmuni", mongooseOptions);
 app.use(express.static(`${__dirname}/views`));
 app.use(compression());
 app.use(express.json());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(session({
+    secret: "Sevan Solutions Solving Some Shit",
+    sameSite: "lax",
+    saveUninitialized: true,
+    resave: false
+}));
+
 require("./routes.js")(app);
 
 if(process.env.NODE_ENV === "production") httpsServer.listen(process.env.HTTPS_PORT);
