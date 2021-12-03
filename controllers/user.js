@@ -10,6 +10,7 @@ module.exports = {
         password: String
         confirmPassword: String
     }
+    redirect: "/user/dashboard"
     */
     create: function(req, res){
         let email = req.body.email.toLowerCase();

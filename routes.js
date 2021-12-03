@@ -1,4 +1,5 @@
 const user = require("./controllers/user.js");
+const other = require("./controllers/other.js");
 
 module.exports = (app)=>{
     let views = `${__dirname}/views/`;
@@ -12,4 +13,5 @@ module.exports = (app)=>{
 
     //OTHER
     app.get("/", (req, res)=>res.sendFile(`${views}/landingPage.html`));
+    app.get("/logout", other.logout);
 }
