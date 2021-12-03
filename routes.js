@@ -10,6 +10,7 @@ module.exports = (app)=>{
     app.get("/user/dashboard", (req, res)=>res.sendFile(`${views}/user/dashboard.html`));
 
     app.post("/user/register", user.create);
+    app.post("/user/login", user.login);
 
     //OTHER
     app.get("/", (req, res)=>res.sendFile(`${views}/landingPage.html`));

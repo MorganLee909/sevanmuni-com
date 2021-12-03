@@ -47,5 +47,40 @@ module.exports = {
                         return res.redirect("/");
                 }
             });
+    },
+
+    /*
+    POST: User login
+    req.body = {
+        email: String
+        password: String
+    }
+    redirect: /user/dashboard
+    */
+    login: function(req, res){
+        let email = req.body.email.toLowerCase();
+
+        User.findOne({email: email})
+            .then((user)=>{
+                if(!user) throw "noUser";
+
+                bcrypt.compare(req.body.password, user.password, (err, result)=>{
+                    if(result){
+                        req.session.user = user._id;
+
+                        return res.redirect("/user/dashboard");
+                    }else{
+                        return res.redirect("/user/login");
+                    }
+                })
+            })
+            .catch((err)=>{
+                switch(err){
+                    case "noUser": return res.redirect("/user/register");
+                    default:
+                        console.error(err);
+                        return res.redirect("/user/login");
+                }
+            });
     }
 }
