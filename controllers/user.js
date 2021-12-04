@@ -165,5 +165,49 @@ module.exports = {
                         return res.redirect("/");
                 }
             })
+    },
+
+    /*
+    POST: Send email for password reset
+    req.body = {
+        email: String
+    }
+    */
+    passwordEmail: function(req, res){
+        let email = req.body.email.toString();
+
+        User.findOne({email: email})
+            .then((user)=>{
+                if(!user) throw "noUser";
+
+                return axios({
+                    method: "post",
+                    url: "https://api.mailgun.net/v3/mg.sevanmuni.com/messages",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    auth: {
+                        username: "api",
+                        password: process.env.MG_SEVANMUNI_KEY
+                    },
+                    data: queryString.stringify({
+                        from: "sevanmuni.com <password-reset@sevanmuni.com>",
+                        to: user.email,
+                        subject: "Password reset at sevanmuni.com",
+                        html: passwordEmail(user, link)
+                    })
+                });
+            })
+            .then(()=>{
+                return res.redirect("/");
+            })
+            .catch((err)=>{
+                switch(err){
+                    case "noUser": return res.redirect("/user/password/email");
+                    default:
+                        console.error(err);
+                        return res.redirect("/");
+                }
+            });
     }
 }
