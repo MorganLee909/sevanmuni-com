@@ -18,6 +18,7 @@ module.exports = (app)=>{
     app.get("/user/verify/email", user.sendVerifyEmail);
     app.get("/user/verify/:id/:session", user.verify);
     app.post("/user/password/email", user.passwordEmail);
+    app.post("/user/password/reset", user.passwordReset);
 
     //OTHER
     app.get("/", (req, res)=>res.sendFile(`${views}/landingPage.html`));

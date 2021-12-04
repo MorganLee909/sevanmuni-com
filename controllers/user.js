@@ -212,5 +212,47 @@ module.exports = {
                         return res.redirect("/");
                 }
             });
+    },
+
+    /*
+    POST: reset user's password
+    req.body = {
+        id: String
+        session: String
+        password: String
+        confirmPassword: String
+    }
+    redirect: /user/login
+    */
+    passwordReset: function(req, res){
+        User.findOne({_id: req.body.id})
+            .then((user)=>{
+                if(!user) throw "noUser";
+                if(user.session !== req.body.session) throw "invalid";
+                if(req.body.password.length < 10) throw "short";
+                if(req.body.password !== req.body.password) throw "match";
+                
+                let salt = bcrypt.genSaltSync(10);
+                let hash = bcrypt.hashSync(req.body.password, salt);
+
+                user.password = hash;
+                user.session = helper.generateSession();
+
+                return user.save();
+            })
+            .then((user)=>{
+                return res.redirect("/user/login");
+            })
+            .catch((err)=>{
+                switch(err){
+                    case "noUser": return res.redirect("/");
+                    case "invalid": return res.redirect("/");
+                    case "short": return res.redirect(`/user/password/${req.body.id}/${req.body.session}`);
+                    case "match": return res.redirect(`/user/password/${req.body.id}/${req.body.session}`);
+                    default:
+                        console.error(err);
+                        return res.redirect("/");
+                }
+            });
     }
 }
