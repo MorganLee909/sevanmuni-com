@@ -180,6 +180,8 @@ module.exports = {
             .then((user)=>{
                 if(!user) throw "noUser";
 
+                let link = `${req.protocol}://${req.get("host")}/user/password/${user._id}/${user.session}`;
+
                 return axios({
                     method: "post",
                     url: "https://api.mailgun.net/v3/mg.sevanmuni.com/messages",
