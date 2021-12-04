@@ -15,7 +15,7 @@ module.exports = {
         password: String
         confirmPassword: String
     }
-    redirect: "/user/dashboard"
+    redirect: "/user/verify/email"
     */
     create: function(req, res){
         let email = req.body.email.toLowerCase();
@@ -91,7 +91,10 @@ module.exports = {
     },
 
     /*
-    GET: send verification email to logged in user
+    POST: send verification email to logged in user
+    req.body = {
+        email: String
+    }
     redirect: /user/verify/notify
     */
     sendVerifyEmail: function(req, res){
@@ -112,7 +115,7 @@ module.exports = {
                         password: process.env.MG_SEVANMUNI_KEY
                     },
                     data: queryString.stringify({
-                        from: "SEVANMUNI.COM <verify@sevanmuni.com>",
+                        from: "sevanmuni.com <verify@sevanmuni.com>",
                         to: user.email,
                         subject: "Verification Email from sevanmuni.com",
                         html: verifyEmail(user, link)
@@ -124,6 +127,39 @@ module.exports = {
             .catch((err)=>{
                 switch(err){
                     case "noUser": return res.redirect("/user/login");
+                    default:
+                        console.error(err);
+                        return res.redirect("/");
+                }
+            })
+    },
+
+    /*
+    GET: verifies the users email address
+    req.params = {
+        id: User id
+        session: User session
+    }
+    redirect: /user/dashboard
+    */
+    verify: function(req, res){
+        User.findOne({_id: req.params.id})
+            .then((user)=>{
+                if(!user) throw "noUser";
+                if(user.session !== req.params.session) throw "invalid";
+                
+                user.status.splice(user.status.indexOf("unverified"), 1);
+                user.session = helper.generateSession();
+
+                return user.save();
+            })
+            .then((user)=>{
+                return res.redirect("/user/dashboard");
+            })
+            .catch((err)=>{
+                switch(err){
+                    case "noUser": return res.redirect("/");
+                    case "invalid": return res.redirect("/");
                     default:
                         console.error(err);
                         return res.redirect("/");
