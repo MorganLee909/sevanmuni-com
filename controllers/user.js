@@ -33,7 +33,7 @@ module.exports = {
                     session: helper.generateSession()
                 });
 
-                req.session.user = newUser._id;
+                req.session.user = newUser.session;
 
                 return newUser.save();
             })

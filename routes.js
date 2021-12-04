@@ -1,5 +1,6 @@
 const user = require("./controllers/user.js");
 const other = require("./controllers/other.js");
+const mid = require("./middleware.js");
 
 module.exports = (app)=>{
     let views = `${__dirname}/views/`;
@@ -7,7 +8,7 @@ module.exports = (app)=>{
     //USERS
     app.get("/user/register", (req, res)=>res.sendFile(`${views}/user/register.html`));
     app.get("/user/login", (req, res)=>res.sendFile(`${views}/user/login.html`));
-    app.get("/user/dashboard", (req, res)=>res.sendFile(`${views}/user/dashboard.html`));
+    app.get("/user/dashboard", mid.auth("user"), (req, res)=>res.sendFile(`${views}/user/dashboard.html`));
 
     app.post("/user/register", user.create);
     app.post("/user/login", user.login);
