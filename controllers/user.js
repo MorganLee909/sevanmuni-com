@@ -1,5 +1,7 @@
 const User = require("../models/user.js");
 
+const helper = require("../helper.js");
+
 const bcrypt = require("bcryptjs");
 
 module.exports = {
@@ -27,7 +29,8 @@ module.exports = {
                 let newUser = new User({
                     email: email,
                     password: hash,
-                    status: ["unverified"]
+                    status: ["unverified"],
+                    session: helper.generateSession()
                 });
 
                 req.session.user = newUser._id;
@@ -66,7 +69,7 @@ module.exports = {
 
                 bcrypt.compare(req.body.password, user.password, (err, result)=>{
                     if(result){
-                        req.session.user = user._id;
+                        req.session.user = user.session;
 
                         return res.redirect("/user/dashboard");
                     }else{
