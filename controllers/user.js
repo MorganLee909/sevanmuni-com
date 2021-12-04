@@ -1,8 +1,11 @@
 const User = require("../models/user.js");
 
 const helper = require("../helper.js");
+const verifyEmail = require("../emails/emailVerification.js");
 
 const bcrypt = require("bcryptjs");
+const axios = require("axios");
+const queryString = require("querystring");
 
 module.exports = {
     /*
@@ -94,7 +97,37 @@ module.exports = {
     sendVerifyEmail: function(req, res){
         User.findOne({session: req.session.user})
             .then((user)=>{
-                
+                if(!user) throw "noUser";
+
+                let link = `${req.protocol}://${req.get("host")}/user/verify/${user._id}/${user.session}`;
+
+                axios({
+                    method: "post",
+                    url: "https://api.mailgun.net/v3/mg.sevanmuni.com/messages",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    auth: {
+                        username: "api",
+                        password: process.env.MG_SEVANMUNI_KEY
+                    },
+                    data: queryString.stringify({
+                        from: "SEVANMUNI.COM <verify@sevanmuni.com>",
+                        to: user.email,
+                        subject: "Verification Email from sevanmuni.com",
+                        html: verifyEmail(user, link)
+                    })
+                }).catch(err=>console.error(err));
+
+                return res.redirect("/user/verify/notify");
+            })
+            .catch((err)=>{
+                switch(err){
+                    case "noUser": return res.redirect("/user/login");
+                    default:
+                        console.error(err);
+                        return res.redirect("/");
+                }
             })
     }
 }

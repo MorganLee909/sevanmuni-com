@@ -28,7 +28,7 @@ module.exports = {
             .catch((err)=>{
                 switch(err){
                     case "noUser": return res.redirect("/user/login");
-                    case "unverified": return res.redirect("/user/verify");
+                    case "unverified": return res.redirect("/user/verify/email");
                     default:
                         console.error(err);
                         return res.redirect("/");
