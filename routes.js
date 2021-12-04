@@ -9,6 +9,7 @@ module.exports = (app)=>{
     app.get("/user/register", (req, res)=>res.sendFile(`${views}/user/register.html`));
     app.get("/user/login", (req, res)=>res.sendFile(`${views}/user/login.html`));
     app.get("/user/verify/notify", (req, res)=>res.sendFile(`${views}/user/verify.html`));
+    app.get("/user/password/email", (req, res)=>res.sendFile(`${views}/user/passwordEmail.html`));
     app.get("/user/dashboard", mid.auth("user"), (req, res)=>res.sendFile(`${views}/user/dashboard.html`));
 
     app.post("/user/register", user.create);
