@@ -85,5 +85,16 @@ module.exports = {
                         return res.redirect("/user/login");
                 }
             });
+    },
+
+    /*
+    GET: send verification email to logged in user
+    redirect: /user/verify/notify
+    */
+    sendVerifyEmail: function(req, res){
+        User.findOne({session: req.session.user})
+            .then((user)=>{
+                
+            })
     }
 }
