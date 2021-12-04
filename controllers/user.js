@@ -2,6 +2,7 @@ const User = require("../models/user.js");
 
 const helper = require("../helper.js");
 const verifyEmail = require("../emails/emailVerification.js");
+const passwordEmail = require("../emails/passwordEmail.js");
 
 const bcrypt = require("bcryptjs");
 const axios = require("axios");
