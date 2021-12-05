@@ -22,8 +22,10 @@ module.exports = (app)=>{
     //ADMIN
     app.get("/admin/register", mid.banner, (req, res)=>res.render("admin/register.ejs", {banner: res.locals.banner}));
 
+    app.post("/admin/register", admin.create);
+
     //OTHER
-    app.get("/", mid.banner, (req, res)=>res.render(`${views}/landingPage.ejs`, {banner: res.locals.banner}));
+    app.get("/", mid.banner, (req, res)=>res.render("/landingPage.ejs", {banner: res.locals.banner}));
     app.get("/logout", other.logout);
-    app.get("*", (req, res)=>res.render(`${views}/404.ejs`));
+    app.get("*", (req, res)=>res.render("404.ejs"));
 }
