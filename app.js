@@ -35,6 +35,8 @@ if(process.env.NODE_ENV === "production"){
 
 mongoose.connect("mongodb://127.0.0.1/sevanmuni", mongooseOptions);
 
+app.set("view engine", "ejs");
+// app.set("views", `${__dirname}/views`);
 app.use(express.static(`${__dirname}/views`));
 app.use(compression());
 app.use(express.json());
