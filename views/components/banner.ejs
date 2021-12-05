@@ -1,5 +1,11 @@
 <% if(banner){ %>
-    <div class="banner <%=banner.type%>Banner">
+    <div id="banner" class="banner <%=banner.type%>Banner">
         <p><%=banner.message%></p>
     </div>
+
+    <script>
+        setTimeout(()=>{
+            document.getElementById("banner").style.display = "none";
+        }, 10000)
+    </script>
 <% } %>
