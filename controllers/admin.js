@@ -12,6 +12,7 @@ module.exports = {
         password: String
         confirmPassword: String
     }
+    redirect: /admin/dashboard
     */
     create: function(req, res){
         let email = req.body.email.toLowerCase();
@@ -52,6 +53,48 @@ module.exports = {
                     case "match":
                         req.session.bannerMessage = "Passwords do not match";
                         return res.redirect("/admin/register");
+                    default:
+                        console.error(err);
+                        req.session.bannerMessage = "Internal error";
+                        return res.redirect("/");
+                }
+            });
+    },
+
+    /*
+    POST: Admin login
+    req.body = {
+        email: String
+        password: String
+    }
+    redirect: /admin/dashboard
+    */
+    login: function(req, res){
+        let email = req.body.email.toLowerCase();
+
+        Admin.findOne({email: email})
+            .then((admin)=>{
+                if(!admin) throw "noAdmin";
+
+                bcrypt.compare(req.body.password, admin.password, (err, result)=>{
+                    if(result){
+                        req.session.admin = admin.session;
+
+                        return res.redirect("/admin/dashboard");
+                    }else{
+                        req.session.banner = "error";
+                        req.session.bannerMessage = "Email or password is incorrect";
+                        return res.redirect("/admin/login");
+                    }
+                })
+            })
+            .catch((err)=>{
+                req.session.banner = "error";
+
+                switch(err){
+                    case "noAdmin":
+                        req.session.bannerMessage = "Email or password is incorrect";
+                        return res.redirect("/admin/login");
                     default:
                         console.error(err);
                         req.session.bannerMessage = "Internal error";
