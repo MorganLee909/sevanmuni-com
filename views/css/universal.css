@@ -1,3 +1,22 @@
 a{
     color: rgb(31, 72, 112);
 }
+
+.banner{
+    width: 75%;
+    position: fixed;
+    top: 50;
+    color: white;
+}
+
+.errorBanner{
+    background: red;
+}
+
+.successBanner{
+    background: green;
+}
+
+.warningBanner{
+    background: yellow;
+}
