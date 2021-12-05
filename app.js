@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const compression = require("compression");
 const session = require("cookie-session");
 const bodyParser = require("body-parser");
+const esbuild = require("esbuild");
 const https = require("https");
 const fs = require("fs");
 
@@ -12,6 +13,13 @@ let mongooseOptions = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 };
+
+let esbuildOptions = {
+    entryPoints: ["./views/js/admin/index.js"],
+    bundle: true,
+    minify: false,
+    outdir: "./views/bundles/"
+}
 
 let httpsServer = {};
 if(process.env.NODE_ENV === "production"){
@@ -31,12 +39,15 @@ if(process.env.NODE_ENV === "production"){
     mongooseOptions.auth = {authSource: "admin"};
     mongooseOptions.user = "website";
     mongooseOptions.pass = process.env.MONGODB_PASS;
+
+    esbuildOptions.minify = true;
 }
 
 mongoose.connect("mongodb://127.0.0.1/sevanmuni", mongooseOptions);
 
+esbuild.buildSync(esbuildOptions);
+
 app.set("view engine", "ejs");
-// app.set("views", `${__dirname}/views`);
 app.use(express.static(`${__dirname}/views`));
 app.use(compression());
 app.use(express.json());

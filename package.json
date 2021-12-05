@@ -5,7 +5,27 @@
     "compression": "^1.7.4",
     "cookie-session": "^1.4.0",
     "ejs": "^3.1.6",
+    "esbuild": "^0.14.2",
     "express": "^4.17.1",
     "mongoose": "^6.0.14"
-  }
+  },
+  "name": "sevanmuni-com",
+  "version": "1.0.0",
+  "description": "Website for aggregating municipal code information",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --ignore views/bundles/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MorganLee909/sevanmuni-com.git"
+  },
+  "author": "Lee Morgan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MorganLee909/sevanmuni-com/issues"
+  },
+  "homepage": "https://github.com/MorganLee909/sevanmuni-com#readme"
 }
