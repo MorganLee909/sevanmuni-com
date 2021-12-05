@@ -3,20 +3,23 @@ a{
 }
 
 .banner{
-    width: 75%;
+    width: 500px;
     position: fixed;
-    top: 50;
+    top: 1px;
     color: white;
+    z-index: 10;
+    text-align: center;
+    padding: 10px;
 }
 
 .errorBanner{
-    background: red;
+    background: rgba(255, 0, 0, 0.85);
 }
 
 .successBanner{
-    background: green;
+    background: rgba(0, 255, 0, 0.85);
 }
 
 .warningBanner{
-    background: yellow;
+    background: rgba(255, 255, 0, 0.85);
 }
