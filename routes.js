@@ -1,4 +1,5 @@
 const user = require("./controllers/user.js");
+const admin = require("./controllers/admin.js");
 const other = require("./controllers/other.js");
 const mid = require("./middleware.js");
 
@@ -19,6 +20,9 @@ module.exports = (app)=>{
     app.get("/user/verify/:id/:session", user.verify);
     app.post("/user/password/email", user.passwordEmail);
     app.post("/user/password/reset", user.passwordReset);
+
+    //ADMIN
+    app.get("/admin/register", admin.create);
 
     //OTHER
     app.get("/", mid.banner, (req, res)=>res.render(`${views}/landingPage.ejs`, {banner: res.locals.banner}));
