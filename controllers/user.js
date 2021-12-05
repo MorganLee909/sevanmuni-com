@@ -45,12 +45,20 @@ module.exports = {
                 return res.redirect("/user/dashboard");
             })
             .catch((err)=>{
+                req.session.banner = "error";
                 switch(err){
-                    case "userExists": return res.redirect("/user/login");
-                    case "shortPass": return res.redirect("/user/register");
-                    case "passMatch": return res.redirect("/user/register");
+                    case "userExists": 
+                        req.session.bannerMessage = "User with this email address already exists";
+                        return res.redirect("/user/login");
+                    case "shortPass":
+                        req.session.bannerMessage = "Password must contain at least 10 characters";
+                        return res.redirect("/user/register");
+                    case "passMatch":
+                        req.session.bannerMessage = "Your passwords do not match";
+                        return res.redirect("/user/register");
                     default:
                         console.error(err);
+                        req.session.bannerMessage = "Internal error";
                         return res.redirect("/");
                 }
             });
@@ -77,15 +85,21 @@ module.exports = {
 
                         return res.redirect("/user/dashboard");
                     }else{
+                        req.session.banner = "error";
+                        req.session.bannerMessage = "Email or password is incorrect";
                         return res.redirect("/user/login");
                     }
                 })
             })
             .catch((err)=>{
+                req.session.banner = "error";
                 switch(err){
-                    case "noUser": return res.redirect("/user/register");
+                    case "noUser":
+                        req.session.bannerMessage = "Email or password is incorrect";
+                        return res.redirect("/user/register");
                     default:
                         console.error(err);
+                        req.session.bannerMessage = "Internal error";
                         return res.redirect("/user/login");
                 }
             });
@@ -126,10 +140,14 @@ module.exports = {
                 return res.redirect("/user/verify/notify");
             })
             .catch((err)=>{
+                req.session.banner = "error";
                 switch(err){
-                    case "noUser": return res.redirect("/user/login");
+                    case "noUser":
+                        req.session.bannerMessage = "Please log in";
+                        return res.redirect("/user/login");
                     default:
                         console.error(err);
+                        req.session.bannerMessage = "Internal error";
                         return res.redirect("/");
                 }
             })
@@ -146,7 +164,7 @@ module.exports = {
     verify: function(req, res){
         User.findOne({_id: req.params.id})
             .then((user)=>{
-                if(!user) throw "noUser";
+                if(!user) throw "invalid";
                 if(user.session !== req.params.session) throw "invalid";
                 
                 user.status.splice(user.status.indexOf("unverified"), 1);
@@ -155,14 +173,19 @@ module.exports = {
                 return user.save();
             })
             .then((user)=>{
+                req.session.banner = "success";
+                req.session.bannerMessage = "Account verified";
                 return res.redirect("/user/dashboard");
             })
             .catch((err)=>{
+                req.session.banner = "error";
                 switch(err){
-                    case "noUser": return res.redirect("/");
-                    case "invalid": return res.redirect("/");
+                    case "invalid":
+                        req.session.bannerMessage = "Invalid URL";
+                        return res.redirect("/");
                     default:
                         console.error(err);
+                        req.session.bannerMessage = "Internal error";
                         return res.redirect("/");
                 }
             })
@@ -202,13 +225,19 @@ module.exports = {
                 });
             })
             .then(()=>{
+                req.session.banner = "success";
+                req.session.bannerMessage = "Email sent with instructions to reset your password";
                 return res.redirect("/");
             })
             .catch((err)=>{
+                req.session.banner = "error";
                 switch(err){
-                    case "noUser": return res.redirect("/user/password/email");
+                    case "noUser":
+                        req.session.bannerMessage = "No user with that email exists";
+                        return res.redirect("/user/password/email");
                     default:
                         console.error(err);
+                        req.session.bannerMessage = "Internal error";
                         return res.redirect("/");
                 }
             });
@@ -227,7 +256,7 @@ module.exports = {
     passwordReset: function(req, res){
         User.findOne({_id: req.body.id})
             .then((user)=>{
-                if(!user) throw "noUser";
+                if(!user) throw "invalid";
                 if(user.session !== req.body.session) throw "invalid";
                 if(req.body.password.length < 10) throw "short";
                 if(req.body.password !== req.body.password) throw "match";
@@ -241,16 +270,25 @@ module.exports = {
                 return user.save();
             })
             .then((user)=>{
+                req.session.banner = "success";
+                req.session.bannerMessage = "Password Reset. Please log in.";
                 return res.redirect("/user/login");
             })
             .catch((err)=>{
+                req.session.banner = "error";
                 switch(err){
-                    case "noUser": return res.redirect("/");
-                    case "invalid": return res.redirect("/");
-                    case "short": return res.redirect(`/user/password/${req.body.id}/${req.body.session}`);
-                    case "match": return res.redirect(`/user/password/${req.body.id}/${req.body.session}`);
+                    case "invalid":
+                        req.session.bannerMessage = "Invalid URL";
+                        return res.redirect("/");
+                    case "short":
+                        req.session.bannerMessage = "Password must contain at least 10 characters";
+                        return res.redirect(`/user/password/${req.body.id}/${req.body.session}`);
+                    case "match":
+                        req.session.bannerMessage = "Your passwords do not match";
+                        return res.redirect(`/user/password/${req.body.id}/${req.body.session}`);
                     default:
                         console.error(err);
+                        req.session.bannerMessage = "Internal error";
                         return res.redirect("/");
                 }
             });

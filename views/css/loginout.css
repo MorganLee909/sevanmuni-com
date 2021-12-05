@@ -60,3 +60,7 @@ input[type=submit]{
 input[type=submit]:hover{
     background: rgb(88, 186, 91);
 }
+
+.note{
+    font-size: 12px;
+}

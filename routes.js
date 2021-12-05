@@ -21,6 +21,6 @@ module.exports = (app)=>{
     app.post("/user/password/reset", user.passwordReset);
 
     //OTHER
-    app.get("/", (req, res)=>res.render(`${views}/landingPage.ejs`));
+    app.get("/", mid.banner, (req, res)=>res.render(`${views}/landingPage.ejs`, {banner: res.locals.banner}));
     app.get("/logout", other.logout);
 }
