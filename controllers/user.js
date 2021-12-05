@@ -259,7 +259,7 @@ module.exports = {
                 if(!user) throw "invalid";
                 if(user.session !== req.body.session) throw "invalid";
                 if(req.body.password.length < 10) throw "short";
-                if(req.body.password !== req.body.password) throw "match";
+                if(req.body.password !== req.body.confirmPassword) throw "match";
                 
                 let salt = bcrypt.genSaltSync(10);
                 let hash = bcrypt.hashSync(req.body.password, salt);

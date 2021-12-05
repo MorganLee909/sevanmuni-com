@@ -16,7 +16,7 @@ module.exports = {
                     break;
                 case "admin":
                     res.locals.admin = await this.getAdmin(req.session.admin, res, req);
-                    if(res.lcoals.user) next();
+                    if(res.locals.admin) next();
                     break;
             }
         }

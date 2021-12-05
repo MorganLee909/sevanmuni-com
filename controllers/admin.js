@@ -158,5 +158,56 @@ module.exports = {
                         return res.redirect("/");
                 }
             });
+    },
+
+    /*
+    POST: Admin reset password
+    req.body = {
+        id: String
+        session: string
+        password: String
+        confirmPassword: String
+    }
+    */
+    passwordReset: function(req, res){
+        Admin.findOne({_id: req.body.id})
+            .then((admin)=>{
+                if(!admin) throw "invalid";
+                if(admin.session !== req.body.session) throw "invalid";
+                if(req.body.password !== req.body.confirmPassword) throw "match";
+                if(req.body.password.length < 10) throw "short";
+
+                let salt = bcrypt.genSaltSync(10);
+                let hash = bcrypt.hashSync(req.body.password, salt);
+
+                admin.password = hash;
+                admin.session = helper.generateSession();
+
+                return admin.save();
+            })
+            .then((admin)=>{
+                req.session.banner = "success";
+                req.session.bannerMessage = "Password reset. Please log in.";
+                return res.redirect("/admin/login");
+            })
+            .catch((err)=>{
+                req.session.banner = "error";
+                
+                switch(err){
+                    case "invalid":
+                        req.session.bannerMessage = "Invalid URL";
+                        return res.redirect("/");
+                    case "match":
+                        req.session.bannerMessage = "Your passwords do not match";
+                        return res.redirect(`/admin/password/${req.body.id}/${req.body.session}`);
+                    case "short":
+                        req.session.bannerMessage = "Password must contain at least 10 characters";
+                        return res.redirect(`/admin/password/${req.body.id}/${req.body.session}`);
+                    default:
+                        console.error(err);
+                        req.session.bannerMessage = "Internal error";
+                        return res.redirect("/");
+                }
+            });
     }
 }

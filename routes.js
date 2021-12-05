@@ -29,6 +29,7 @@ module.exports = (app)=>{
     app.post("/admin/register", admin.create);
     app.post("/admin/login", admin.login);
     app.post("/admin/password/email", admin.passwordEmail);
+    app.post("/admin/password/reset", admin.passwordReset);
 
     //OTHER
     app.get("/", mid.banner, (req, res)=>res.render("landingPage.ejs", {banner: res.locals.banner}));
