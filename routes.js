@@ -21,6 +21,7 @@ module.exports = (app)=>{
 
     //ADMIN
     app.get("/admin/register", mid.banner, (req, res)=>res.render("admin/register.ejs", {banner: res.locals.banner}));
+    app.get("/admin/login", mid.banner, (req, res)=>res.render("admin/login.ejs", {banner: res.locals.banner}));
 
     app.post("/admin/register", admin.create);
 

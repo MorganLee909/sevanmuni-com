@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include("../components/head.ejs") %>
+        <link rel="stylesheet" href="/css/loginout.css">
+    </head>
+    <body>
+        <%- include("../components/banner.ejs") %>
+
+        <a class="logoLink" href="https://sevansolutions.com">
+            <img src="/images/sevanLogo.gif" alt="Sevan Solutions">
+        </a>
+
+        <form action="/admin/login" method="post">
+            <h1>Admin Login</h1>
+
+            <label>Email
+                <input type="email" name="email" placeholder="Email" required>
+            </label>
+
+            <label>Password
+                <input type="password" name="password" placeholder="Password" required>
+            </label>
+
+            <input type="submit" value="Login">
+        </form>
+    </body>
+</html>
