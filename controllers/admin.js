@@ -1,8 +1,11 @@
 const Admin = require("../models/admin.js");
 
 const helper = require("../helper.js");
+const passwordEmail = require("../emails/passwordEmail.js");
 
 const bcrypt = require("bcryptjs");
+const axios = require("axios");
+const queryString = require("querystring");
 
 module.exports = {
     /*
@@ -95,6 +98,60 @@ module.exports = {
                     case "noAdmin":
                         req.session.bannerMessage = "Email or password is incorrect";
                         return res.redirect("/admin/login");
+                    default:
+                        console.error(err);
+                        req.session.bannerMessage = "Internal error";
+                        return res.redirect("/");
+                }
+            });
+    },
+
+    /*
+    POST: Send email to admin for password reset
+    req.body = {
+        email: String
+    }
+    redirect: /
+    */
+    passwordEmail: function(req, res){
+        let email = req.body.email.toString();
+
+        Admin.findOne({email: email})
+            .then((admin)=>{
+                if(!admin) throw "noAdmin";
+
+                let link = `${req.protocol}://${req.get("host")}/admin/password/${admin._id}/${admin.session}`;
+
+                return axios({
+                    method: "post",
+                    url: "https://api.mailgun.net/v3/mg.sevanmuni.com/messages",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    auth: {
+                        username: "api",
+                        password: process.env.MG_SEVANMUNI_KEY
+                    },
+                    data: queryString.stringify({
+                        from: "sevanmuni.com <password-reset@sevanmuni.com>",
+                        to: admin.email,
+                        subject: "Password reset at sevanmuni.com",
+                        html: passwordEmail(admin, link)
+                    })
+                });
+            })
+            .then(()=>{
+                req.session.banner = "success";
+                req.session.bannerMessage = "Email sent with instructions to reset your password";
+                return res.redirect("/");
+            })
+            .catch((err)=>{
+                req.session.banner = "error";
+
+                switch(err){
+                    case "noAdmin":
+                        req.session.bannerMessage = "No admin with that email exists";
+                        return res.redirect("/admin/password/email");
                     default:
                         console.error(err);
                         req.session.bannerMessage = "Internal error";
