@@ -22,6 +22,7 @@ module.exports = (app)=>{
     //ADMIN
     app.get("/admin/register", mid.banner, (req, res)=>res.render("admin/register.ejs", {banner: res.locals.banner}));
     app.get("/admin/login", mid.banner, (req, res)=>res.render("admin/login.ejs", {banner: res.locals.banner}));
+    app.get("/admin/dashboard", mid.auth("admin"), mid.banner, (req, res)=>res.render("admin/dashboard.ejs", {banner: res.locals.banner}));
 
     app.post("/admin/register", admin.create);
     app.post("/admin/login", admin.login);

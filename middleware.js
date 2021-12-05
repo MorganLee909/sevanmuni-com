@@ -1,4 +1,5 @@
 let User = require("./models/user.js");
+let Admin = require("./models/admin.js");
 
 module.exports = {
     /*
@@ -10,14 +11,18 @@ module.exports = {
         return async (req, res, next)=>{
             switch(allowed){
                 case "user":
-                    res.locals.user = await this.getUser(req.session.user, res);
+                    res.locals.user = await this.getUser(req.session.user, res, req);
                     if(res.locals.user) next();
+                    break;
+                case "admin":
+                    res.locals.admin = await this.getAdmin(req.session.admin, res, req);
+                    if(res.lcoals.user) next();
                     break;
             }
         }
     },
 
-    getUser: function(session, res){
+    getUser: function(session, res, req){
         return User.findOne({session: session})
             .then((user)=>{
                 if(!user) throw "noUser";
@@ -26,11 +31,43 @@ module.exports = {
                 return user;
             })
             .catch((err)=>{
+                req.session.banner = "error";
+
                 switch(err){
-                    case "noUser": return res.redirect("/user/login");
-                    case "unverified": return res.redirect("/user/verify/email");
+                    case "noUser":
+                        req.session.bannerMessage = "Please log in";
+                        return res.redirect("/user/login");
+                    case "unverified":
+                        return res.redirect("/user/verify/email");
                     default:
                         console.error(err);
+                        req.session.bannerMessage = "Internal error";
+                        return res.redirect("/");
+                }
+            });
+    },
+
+    getAdmin: function(session, res, req){
+        return Admin.findOne({session: session})
+            .then((admin)=>{
+                if(!admin) throw "noAdmin";
+                if(admin.status === "unapproved") throw "unapproved";
+
+                return admin;
+            })
+            .catch((err)=>{
+                req.session.banner = "error";
+
+                switch(err){
+                    case "noAdmin":
+                        req.session.bannerMessage = "Please log in";
+                        return res.redirect("/admin/login");
+                    case "unapproved":
+                        req.session.bannerMessage = "Your account has not yet been approved";
+                        return res.redirect("/");
+                    default:
+                        console.error(err);
+                        req.session.bannerMessage = "Internal error";
                         return res.redirect("/");
                 }
             });
