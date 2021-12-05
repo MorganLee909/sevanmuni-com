@@ -25,7 +25,8 @@ const AdminSchema = new mongoose.Schema({
     },
     session: {
         type: String,
-        required: true
+        required: true,
+        index: true
     }
 });
 

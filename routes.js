@@ -24,6 +24,7 @@ module.exports = (app)=>{
     app.get("/admin/login", mid.banner, (req, res)=>res.render("admin/login.ejs", {banner: res.locals.banner}));
     app.get("/admin/password/email", (req, res)=>res.render("admin/passwordEmail.ejs", {banner: res.locals.banner}));
     app.get("/admin/password/:id/:session", mid.banner, (req, res)=>res.render("admin/password.ejs", {banner: res.locals.banner}));
+    app.get("/admin", (req, res)=>res.redirect("/admin/dashboard"));
     app.get("/admin/dashboard", mid.auth("admin"), mid.banner, (req, res)=>res.render("admin/dashboard.ejs", {banner: res.locals.banner}));
 
     app.post("/admin/register", admin.create);
@@ -33,6 +34,7 @@ module.exports = (app)=>{
 
     //OTHER
     app.get("/", mid.banner, (req, res)=>res.render("landingPage.ejs", {banner: res.locals.banner}));
-    app.get("/logout", other.logout);
     app.get("*", (req, res)=>res.render("404.ejs"));
+    
+    app.get("/logout", other.logout);
 }
