@@ -50,7 +50,7 @@ input[type="text"], input[type="email"], input[type="password"]{
 
 input[type=submit]{
     font-size: 30px;
-    background: rgb(70, 148, 72);
+    background: rgb(88, 186, 91);
     color: white;
     border: none;
     padding: 5px;
@@ -58,7 +58,7 @@ input[type=submit]{
 }
 
 input[type=submit]:hover{
-    background: rgb(88, 186, 91);
+    background: rgb(70, 148, 72);
 }
 
 .note{

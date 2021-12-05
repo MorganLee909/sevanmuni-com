@@ -96,7 +96,7 @@ module.exports = {
                 switch(err){
                     case "noUser":
                         req.session.bannerMessage = "Email or password is incorrect";
-                        return res.redirect("/user/register");
+                        return res.redirect("/user/login");
                     default:
                         console.error(err);
                         req.session.bannerMessage = "Internal error";

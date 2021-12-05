@@ -1,5 +1,12 @@
+*{margin:0;padding:0;}
+
 a{
     color: rgb(31, 72, 112);
+}
+
+.logoLink{
+    display: flex;
+    justify-content: center;
 }
 
 .banner{
@@ -17,7 +24,7 @@ a{
 }
 
 .successBanner{
-    background: rgba(0, 255, 0, 0.85);
+    background: rgba(70, 148, 72, 0.85);
 }
 
 .warningBanner{
