@@ -33,6 +33,24 @@ module.exports = {
                         console.error(err);
                         return res.redirect("/");
                 }
-            })
+            });
+    },
+
+    banner: function(req, res, next){
+        res.locals.banner = {
+            type: null,
+            message: null
+        };
+
+        if(req.session.banner){
+            res.locals.banner = {
+                type: req.session.banner,
+                message: req.session.bannerMessage
+            }
+            req.session.banner = null;
+            req.session.bannerMessage = null;
+        }
+
+        next();
     }
 }
