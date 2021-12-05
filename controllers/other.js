@@ -5,6 +5,7 @@ module.exports = {
     */
     logout: function(req, res){
         req.session.user = undefined;
+        req.session.admin = undefined;
 
         return res.redirect("/");
     }

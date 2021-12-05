@@ -15,7 +15,7 @@ let mongooseOptions = {
 };
 
 let esbuildOptions = {
-    entryPoints: ["./views/js/admin/index.js"],
+    entryPoints: ["./views/js/admin/admin.js"],
     bundle: true,
     minify: false,
     outdir: "./views/bundles/"

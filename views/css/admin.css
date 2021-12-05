@@ -1,0 +1,45 @@
+body{
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    /* background-image: url("https://3weqccigs6htkbt22o44sj2j-wpengine.netdna-ssl.com/wp-content/uploads/2018/08/McDonalds_600_N_Clark_Chicago_IL_Day_Exterior_Dusk_2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover; */
+}
+
+.section{
+    width: 1000px;
+    height: 100vh;
+    background: rgb(241, 241, 241);
+}
+
+.logo img{
+    margin: 25px;
+}
+
+#main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card{
+    display: flex;
+    align-items: center;
+    height: 75px;
+    width: 50%;
+    background: rgb(88, 186, 91);
+    color: white;
+    font-size: 25px;
+    margin: 10px;
+    padding-left: 25px; 
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.card:hover{
+    background: rgb(70, 148, 72);
+}

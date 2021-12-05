@@ -34,7 +34,8 @@ module.exports = (app)=>{
 
     //OTHER
     app.get("/", mid.banner, (req, res)=>res.render("landingPage.ejs", {banner: res.locals.banner}));
-    app.get("*", (req, res)=>res.render("404.ejs"));
-    
+
     app.get("/logout", other.logout);
+
+    app.get("*", (req, res)=>res.render("404.ejs"));
 }

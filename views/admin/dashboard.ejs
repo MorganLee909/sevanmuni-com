@@ -2,10 +2,35 @@
 <html lang="en">
     <head>
         <%- include("../components/head.ejs") %>
+        <link rel="stylesheet" href="/css/admin.css">
     </head>
     <body>
         <%- include("../components/banner.ejs") %>
 
-        <h1>Admin Dashboard</h1>
+        <div class="section">
+            <header>
+                <a class="logo" href="https://sevansolutions.com">
+                    <img src="/images/sevanLogo.gif" alt="Sevan Solutions">
+                </a>
+
+                <h1 id="adminEmail"></h1>
+            </header>
+
+            <div class="page" id="main">
+                <button id="editAccountBtn" class="card">
+                    <p>Edit account</p>
+                </button>
+                
+                <button id="searchUsersBtn" class="card">
+                    <p>Search users</p>
+                </button>
+
+                <a href="/logout" class="card">
+                    <p>Logout</p>
+                </a>
+            </div>
+        </div>
+
+        <script src="/bundles/admin.js"></script>
     </body>
 </html>
