@@ -209,5 +209,38 @@ module.exports = {
                         return res.redirect("/");
                 }
             });
+    },
+
+    /*
+    POST: Update admin data
+    req.body = {
+        oldPassword: String
+        newPassword: String
+        confirmPassword: String
+    }
+    response: {}
+    */
+    update: function(req, res){
+        if(req.body.newPassword.length < 10) return res.json("Password must contain at least 10 characters");
+        if(req.body.newPassword !== req.body.confirmPassword) return res.json("Passwords do not match");
+        
+        bcrypt.compare(req.body.oldPassword, res.locals.admin.password, (err, result)=>{
+            if(result){
+                let salt = bcrypt.genSaltSync(10);
+                let hash = bcrypt.hashSync(req.body.newPassword, salt);
+
+                res.locals.admin.password = hash;
+
+                res.locals.admin.save()
+                    .then((admin)=>{
+                        return res.json({});
+                    })
+                    .catch((err)=>{
+                        return res.json("Internal error");
+                    })
+            }else{
+                return res.json("Current password is incorrect");
+            }
+        });
     }
 }
