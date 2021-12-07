@@ -16,10 +16,19 @@ body{
     margin: 25px;
 }
 
+.page{
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    margin: 0 auto;
+    width: 85%;
+}
+
 #main{
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: none;
 }
 
 .card{
@@ -50,9 +59,9 @@ body{
     width: 100px;
     background: rgb(88, 186, 91);
     border: none;
+    margin: 0;
     margin-right: auto;
     color: white;
-    margin: 0;
     padding: 10px;
     cursor: pointer;
 }
@@ -61,28 +70,46 @@ body{
     background: rgb(70, 148, 72);
 }
 
-#editAccount{
-    display: flex;
-    flex-direction: column;
-    width: 500px;
-    background: white;
-    padding: 15px;
-    margin: 0 auto;
+#editAccount > *{
+    margin: 15px;
 }
 
-    #editAccount > *{
-        margin: 15px;
-    }
+#pass{
+    text-decoration: underline;
+    margin-bottom: 0;
+}
 
-    #pass{
-        text-decoration: underline;
-        margin-bottom: 0;
-    }
+a.button{
+    background: rgb(252, 65, 55);
+}
 
-    a.button{
-        background: rgb(252, 65, 55);
-    }
+a.button:hover{
+    background: rgb(252, 50, 40);
+}
 
-    a.button:hover{
-        background: rgb(252, 50, 40);
-    }
+#searchUsers{
+    align-items: center;
+}
+
+.userSearchBar{
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+
+#userSearch{
+    font-size: 18px;
+    border: 1px solid black;
+    border-right: none;
+    height: 24px;
+}
+
+#userSearchBtn{
+    border: 1px solid black;
+    border-left: none;
+    background: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+

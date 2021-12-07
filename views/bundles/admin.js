@@ -47,8 +47,19 @@
     }
   });
 
+  // views/js/admin/userSearch.js
+  var require_userSearch = __commonJS({
+    "views/js/admin/userSearch.js"(exports, module) {
+      module.exports = {
+        search: function() {
+        }
+      };
+    }
+  });
+
   // views/js/admin/admin.js
   var profile = require_profile();
+  var userSearch = require_userSearch();
   controller = {
     pages: document.querySelectorAll(".page"),
     banner: document.getElementById("banner"),
@@ -72,12 +83,22 @@
     controller.changePage("editAccount");
   };
   document.getElementById("searchUsersBtn").onclick = () => {
-    controller.changepage("searchUsers");
+    controller.changePage("searchUsers");
   };
   document.getElementById("eaSave").onclick = () => {
     profile.save();
   };
   document.getElementById("eaBack").onclick = () => {
+    controller.changePage("main");
+  };
+  document.getElementById("userSearch").onkeyup = (event) => {
+    if (event.keyCode === 13)
+      userSearch.search();
+  };
+  document.getElementById("userSearchBtn").onclick = () => {
+    userSearch.search();
+  };
+  document.getElementById("suBack").onclick = () => {
     controller.changePage("main");
   };
 })();

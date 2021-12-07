@@ -1,4 +1,5 @@
 const profile = require("./profile.js");
+const userSearch = require("./userSearch.js");
 
 controller = {
     pages: document.querySelectorAll(".page"),
@@ -26,7 +27,11 @@ controller = {
 
 //Main
 document.getElementById("editAccountBtn").onclick = ()=>{controller.changePage("editAccount")};
-document.getElementById("searchUsersBtn").onclick = ()=>{controller.changepage("searchUsers")};
+document.getElementById("searchUsersBtn").onclick = ()=>{controller.changePage("searchUsers")};
 //Profile
 document.getElementById("eaSave").onclick = ()=>{profile.save()};
 document.getElementById("eaBack").onclick = ()=>{controller.changePage("main")};
+//Search Users
+document.getElementById("userSearch").onkeyup = (event)=>{if(event.keyCode === 13) userSearch.search()};
+document.getElementById("userSearchBtn").onclick =  ()=>{userSearch.search()};
+document.getElementById("suBack").onclick = ()=>{controller.changePage("main")};
