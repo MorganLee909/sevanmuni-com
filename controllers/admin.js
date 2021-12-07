@@ -239,8 +239,26 @@ module.exports = {
                         return res.json("Internal error");
                     })
             }else{
+                console.error(err);
                 return res.json("Current password is incorrect");
             }
         });
+    },
+
+    /*
+    GET: Log admin out of all devices
+    redirect: /logout
+    */
+    endSession: function(req, res){
+        res.locals.admin.session = helper.generateSession();
+
+        res.locals.admin.save()
+            .then((admin)=>{
+                return res.redirect("/logout");
+            })
+            .catch((err)=>{
+                console.error(err);
+                return res.json("Internal error");
+            });
     }
 }

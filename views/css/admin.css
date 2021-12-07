@@ -80,5 +80,9 @@ body{
     }
 
     a.button{
-        background: red;
+        background: rgb(252, 65, 55);
+    }
+
+    a.button:hover{
+        background: rgb(252, 50, 40);
     }
