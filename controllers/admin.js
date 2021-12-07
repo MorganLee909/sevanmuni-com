@@ -1,4 +1,5 @@
 const Admin = require("../models/admin.js");
+const User = require("../models/user.js");
 
 const helper = require("../helper.js");
 const passwordEmail = require("../emails/passwordEmail.js");
@@ -255,6 +256,30 @@ module.exports = {
         res.locals.admin.save()
             .then((admin)=>{
                 return res.redirect("/logout");
+            })
+            .catch((err)=>{
+                console.error(err);
+                return res.json("Internal error");
+            });
+    },
+
+    /*
+    POST: search user by email
+    req.body = {
+        searchString: String
+    }
+    */
+    userSearch: function(req, res){
+        User.aggregate([
+            {$match: {$regex: `*${req.body.searchString}*`}},
+            {$project: {
+                email: 1,
+                status: 1,
+                createdAt: 1
+            }}
+        ])
+            .then((users)=>{
+                return res.json(users);
             })
             .catch((err)=>{
                 console.error(err);

@@ -33,6 +33,7 @@ module.exports = (app)=>{
     app.post("/admin/password/reset", admin.passwordReset);
     app.post("/admin/update", mid.auth("admin"), admin.update);
     app.get("/admin/session", mid.auth("admin"), admin.endSession);
+    app.post("/admin/user/search", mid.auth("admin"), admin.userSearch);
 
     //OTHER
     app.get("/", mid.banner, (req, res)=>res.render("landingPage.ejs", {banner: res.locals.banner}));
