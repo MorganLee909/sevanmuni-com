@@ -25,7 +25,7 @@ module.exports = (app)=>{
     app.get("/admin/password/email", (req, res)=>res.render("admin/passwordEmail.ejs", {banner: res.locals.banner}));
     app.get("/admin/password/:id/:session", mid.banner, (req, res)=>res.render("admin/password.ejs", {banner: res.locals.banner}));
     app.get("/admin", (req, res)=>res.redirect("/admin/dashboard"));
-    app.get("/admin/dashboard", mid.auth("admin"), mid.banner, (req, res)=>res.render("admin/dashboard.ejs", {banner: res.locals.banner}));
+    app.get("/admin/dashboard", mid.auth("admin"), mid.banner, (req, res)=>res.render("admin/dashboard.ejs", {banner: res.locals.banner, admin: res.locals.admin}));
 
     app.post("/admin/register", admin.create);
     app.post("/admin/login", admin.login);

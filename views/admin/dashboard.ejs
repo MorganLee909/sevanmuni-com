@@ -5,7 +5,9 @@
         <link rel="stylesheet" href="/css/admin.css">
     </head>
     <body>
-        <%- include("../components/banner.ejs") %>
+        <div id="banner" class="banner" style="display:none">
+            <p></p>
+        </div>
 
         <div class="section">
             <header>
@@ -18,7 +20,7 @@
 
             <div class="page" id="main">
                 <button id="editAccountBtn" class="card">
-                    <p>Edit account</p>
+                    <p>Profile</p>
                 </button>
                 
                 <button id="searchUsersBtn" class="card">
@@ -28,6 +30,45 @@
                 <a href="/logout" class="card">
                     <p>Logout</p>
                 </a>
+            </div>
+
+            <div class="page" id="editAccount" style="display:none">
+                <button id="eaBack" class="backBtn">Back
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                </button>
+
+                <h2>Status: 
+                    <% switch(admin.status){
+                        case "superadmin": %>
+                            Super Admin
+                            <% break;
+                        case "admin": %>
+                            Admin
+                            <% break;
+                    } %>
+                </h2>
+
+                <h2>Email: <%=admin.email%></h2>
+
+                <h2 id="pass">Reset Password</h2>
+                <label>Current Password
+                    <input id="oldPassword" type="password" placeholder="Old Password">
+                </label>
+
+                <label>New Password
+                    <input id="newPassword" type="password" placeholder="New Password">
+                </label>
+
+                <label>Confirm Password
+                    <input id="confirmPassword" type="password" placeholder="Confirm Password">
+                </label>
+
+                <button id="eaSave" class="button">Save Changes</button>
+
+                <a class="button" href="/admin/session">Log Out Of All Devices</a>
             </div>
         </div>
 
