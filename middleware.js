@@ -9,7 +9,6 @@ module.exports = {
     */
     auth: function(allowed){
         return async (req, res, next)=>{
-            console.log(allowed);
             switch(allowed){
                 case "user":
                     res.locals.user = await this.getUser(req.session.user, res, req);

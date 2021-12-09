@@ -20,9 +20,8 @@ module.exports = {
             }
         })
         .catch((err)=>{
-            console.log(err);
             controller.createBanner("Unable to display users", "error");
-        })
+        });
     },
 
     populateUsers: function(users){

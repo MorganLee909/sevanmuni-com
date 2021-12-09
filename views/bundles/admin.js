@@ -68,7 +68,6 @@
               this.populateUsers(response);
             }
           }).catch((err) => {
-            console.log(err);
             controller.createBanner("Unable to display users", "error");
           });
         },
