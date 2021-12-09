@@ -270,8 +270,10 @@ module.exports = {
     }
     */
     userSearch: function(req, res){
+        let regex = new RegExp(req.body.searchString);
+
         User.aggregate([
-            {$match: {$regex: `*${req.body.searchString}*`}},
+            {$match: {email: {$regex: regex}}},
             {$project: {
                 email: 1,
                 status: 1,

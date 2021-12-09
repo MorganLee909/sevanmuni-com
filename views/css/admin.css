@@ -112,3 +112,27 @@ a.button:hover{
     display: flex;
     align-items: center;
 }
+
+#userContainer{
+    width: 100%;
+}
+
+.user{
+    display: flex;
+    padding: 15px;
+    background: white;
+    margin: 10px;
+    width: 90%;
+}
+
+.user > *{
+    width: 33%
+}
+
+.userDate{
+    text-align: center;
+}
+
+.userStatus{
+    text-align: right;
+}
