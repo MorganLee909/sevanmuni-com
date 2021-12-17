@@ -15,11 +15,14 @@ let mongooseOptions = {
 };
 
 let esbuildOptions = {
-    entryPoints: ["./views/js/admin/admin.js"],
+    entryPoints: [
+        "./views/admin/js/admin.js",
+        "./views/site/js/newSite.js"
+    ],
     bundle: true,
     minify: false,
     outdir: "./views/bundles/"
-}
+};
 
 let httpsServer = {};
 if(process.env.NODE_ENV === "production"){
