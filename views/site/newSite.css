@@ -1,0 +1,51 @@
+#contents{
+    width: 1000px;
+    background: rgb(241, 241, 241);
+    min-height: 100vh;
+    margin: auto;
+    padding: 50px 25px;
+    box-sizing: border-box;
+}
+
+section{
+    max-width: 500px;
+    margin: auto;
+}
+
+h1{
+    font-size: 35px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+label{
+    margin: 15px;
+}
+
+.rad{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.rad input{
+    margin-right: 10px;
+}
+
+h3{
+    border-top: 2px solid black;
+}
+
+.endSection{
+    border-bottom: 2px solid black;
+}
+
+.endButtons{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 35px;
+}
+
+#projectInfoNext{
+    margin-left: auto;
+}

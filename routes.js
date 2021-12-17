@@ -36,7 +36,7 @@ module.exports = (app)=>{
     app.post("/admin/user/search", mid.auth("admin"), admin.userSearch);
 
     //SITE
-    app.get("/site/new", mid.auth("employee"), mid.banner, (req, res)=>res.render("site/new.ejs", {banner: res.locals.banner}));
+    app.get("/site/new", mid.auth("employee"), mid.banner, (req, res)=>res.render("site/newSite.ejs", {banner: res.locals.banner}));
 
     //OTHER
     app.get("/", mid.banner, (req, res)=>res.render("landingPage.ejs", {banner: res.locals.banner}));

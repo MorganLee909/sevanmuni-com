@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include("../components/head.ejs") %>
+        <link rel="stylesheet" href="/site/newSite.css">
+    </head>
+    <body>
+        <%- include("../components/banner.ejs") %>
+
+        <div id="contents">
+            <section id="projectInfo">
+                <h1>Project Information</h1>
+
+                <form id="projectInfoForm">
+                    <label>Project Name
+                        <input id="projectName" type="text">
+                    </label>
+
+                    <label>Project Address
+                        <input id="projectAddress" type="text" required>
+                    </label>
+
+                    <h3>Tenant Lease Square Footage</h3>
+
+                    <label>Patio
+                        <input id="patioFootage" type="number" min="0">
+                    </label>
+
+                    <label>Dining Room/BOH
+                        <input id="diningFootage" type="number" min="0">
+                    </label>
+
+                    <label>Total
+                        <input id="totalFootage" type="number" min="0">
+                    </label>
+
+                    <label>Verification Method
+                        <input id="footageMethod" type="text">
+                    </label>
+
+                    <h3>Property Type</h3>
+
+                    <label class="rad">
+                        <input id="propertyTypeFree" type="radio" name="propertyType">
+                        Freestanding Building
+                    </label>
+
+                    <label class="rad">
+                        <input id="propertyTypeEnd" type="radio" name="propertyType">
+                        End Cap
+                    </label>
+
+                    <label class="rad">
+                        <input id="propertyTypeInline" type="radio" name="propertyType">
+                        Inline
+                    </label>
+
+                    <label class="rad">
+                        <input id="propertyTypeOther" type="radio" name="propertyType">
+                        Non-Traditional / Other
+                    </label>
+
+                    <div class="endSection"></div>
+
+                    <div class="endButtons">
+                        <input id="projectInfoNext" class="button" type="submit" value="Next">
+                    </div>
+                </form>
+            </section>
+        </div>
+
+        <script src="/bundles/site/js/newSite.js"></script>
+    </body>
+</html>

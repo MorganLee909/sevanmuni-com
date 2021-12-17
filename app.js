@@ -21,7 +21,8 @@ let esbuildOptions = {
     ],
     bundle: true,
     minify: false,
-    outdir: "./views/bundles/"
+    outdir: "./views/bundles/",
+    outbase: "./views/"
 };
 
 let httpsServer = {};
