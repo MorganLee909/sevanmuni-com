@@ -18,6 +18,14 @@ module.exports = {
                     res.locals.admin = await this.getAdmin(req.session.admin, res, req);
                     if(res.locals.admin) next();
                     break;
+                case "employee":
+                    res.locals.user = await this.getUser(req.session.user, res, req);
+                    if(res.locals.user.status.includes("employee")) next();
+                    break;
+                default:
+                    req.session.banner = "error";
+                    req.session.bannerMessage = "You are not authorized for that";
+                    return res.redirect("/");
             }
         }
     },
