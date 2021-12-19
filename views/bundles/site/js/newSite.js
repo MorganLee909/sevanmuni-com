@@ -64,6 +64,9 @@
           let container = document.getElementById("contactsContainer");
           let template = document.getElementById("contactTemplate").content.children[0];
           let contact = template.cloneNode(true);
+          contact.querySelector(".contactRemove").onclick = () => {
+            contact.parentElement.removeChild(contact);
+          };
           container.appendChild(contact);
         },
         next: function(nextPage) {

@@ -50,6 +50,10 @@ h3{
 }
 
 .red{
+    background: rgb(252, 55, 55);
+}
+
+.red:hover{
     background: red;
 }
 
