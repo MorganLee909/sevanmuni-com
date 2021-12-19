@@ -1,5 +1,12 @@
 module.exports = {
-    submit: function(data){
+    display: function(){
+        hideSections();
+        document.getElementById("projectInfo").style.display = "flex";
+    },
+    
+    submit: function(nextPage){
+        event.preventDefault();
+
         try{
             data.propertyType = document.querySelector("input[name='propertyType']:checked").value;
         }catch(e){
@@ -11,6 +18,8 @@ module.exports = {
         data.diningFootage = document.getElementById("diningFootage").value;
         data.totalFootage = document.getElementById("totalFootage").value;
         data.footageMethod = document.getElementById("footageMethod").value;
+
+        return nextPage.display();
     
         showBanner("Searching for sites, please wait", "awaiting");
         fetch("/site/address", {
@@ -26,7 +35,9 @@ module.exports = {
                     showBanner(addresses, "error");
                 }else if(addresses.length === 0){
                     showBanner("No matching sites found", "warning");
+                    nextPage.display();
                 }else{
+                    nextPage.display();
                     showBanner("Matching sites found", "success");
                 }
             })

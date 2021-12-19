@@ -69,6 +69,45 @@
                     </div>
                 </form>
             </section>
+
+            <section id="contacts" style="display:none">
+                <h1>Directory of Contacts</h1>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Department</th>
+                            <th>Name & Title</th>
+                            <th>Address</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody id="contactsContainer"></tbody>
+                </table>
+
+                <button id="addContactButton" class="button">Add Contact</button>
+
+                <template id="contactTemplate">
+                    <tr class="contactTemplate">
+                        <td><textarea class="contactDeptartment"></textarea></td>
+
+                        <td><textarea class="contactTitle"></textarea></td>
+
+                        <td><textarea class="contactAddress"></textarea></td>
+
+                        <td><textarea class="contactPhone"></textarea></td>
+
+                        <td><textarea class="contactEmail"></textarea></td>
+                    </tr>
+                </template>
+
+                <div class="endButtons">
+                    <button id="contactsBack" class="button red">Back</button>
+
+                    <button id="contactsNext" class="button">Next</button>
+                </div>
+            </section>
         </div>
 
         <script src="/bundles/site/js/newSite.js"></script>

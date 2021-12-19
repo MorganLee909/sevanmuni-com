@@ -7,31 +7,39 @@
   var require_projectInformation = __commonJS({
     "views/site/js/projectInformation.js"(exports, module) {
       module.exports = {
-        submit: function(data2) {
+        display: function() {
+          hideSections();
+          document.getElementById("projectInfo").style.display = "flex";
+        },
+        submit: function(nextPage) {
+          event.preventDefault();
           try {
-            data2.propertyType = document.querySelector("input[name='propertyType']:checked").value;
+            data.propertyType = document.querySelector("input[name='propertyType']:checked").value;
           } catch (e) {
             return;
           }
-          data2.projectName = document.getElementById("projectName").value;
-          data2.projectAddress = document.getElementById("projectAddress").value;
-          data2.patioFootage = document.getElementById("patioFootage").value;
-          data2.diningFootage = document.getElementById("diningFootage").value;
-          data2.totalFootage = document.getElementById("totalFootage").value;
-          data2.footageMethod = document.getElementById("footageMethod").value;
+          data.projectName = document.getElementById("projectName").value;
+          data.projectAddress = document.getElementById("projectAddress").value;
+          data.patioFootage = document.getElementById("patioFootage").value;
+          data.diningFootage = document.getElementById("diningFootage").value;
+          data.totalFootage = document.getElementById("totalFootage").value;
+          data.footageMethod = document.getElementById("footageMethod").value;
+          return nextPage.display();
           showBanner("Searching for sites, please wait", "awaiting");
           fetch("/site/address", {
             method: "post",
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify({ address: data2.projectAddress })
+            body: JSON.stringify({ address: data.projectAddress })
           }).then((r) => r.json()).then((addresses) => {
             if (typeof addresses === "string") {
               showBanner(addresses, "error");
             } else if (addresses.length === 0) {
               showBanner("No matching sites found", "warning");
+              nextPage.display();
             } else {
+              nextPage.display();
               showBanner("Matching sites found", "success");
             }
           }).catch((err) => {
@@ -44,10 +52,35 @@
     }
   });
 
+  // views/site/js/contacts.js
+  var require_contacts = __commonJS({
+    "views/site/js/contacts.js"(exports, module) {
+      module.exports = {
+        display: function(addresses) {
+          hideSections();
+          document.getElementById("contacts").style.display = "flex";
+        },
+        addContact: function() {
+          let container = document.getElementById("contactsContainer");
+          let template = document.getElementById("contactTemplate").content.children[0];
+          let contact = template.cloneNode(true);
+          container.appendChild(contact);
+        }
+      };
+    }
+  });
+
   // views/site/js/newSite.js
   var projectInformation = require_projectInformation();
+  var contacts = require_contacts();
   data = {};
   interval = {};
+  hideSections = () => {
+    let sections = document.querySelectorAll("section");
+    for (let i = 0; i < sections.length; i++) {
+      sections[i].style.display = "none";
+    }
+  };
   showBanner = (message, type) => {
     let banner = document.getElementById("banner");
     banner.style.display = "flex";
@@ -68,7 +101,12 @@
     }
   };
   document.getElementById("projectInfoForm").onsubmit = () => {
-    event.preventDefault();
-    projectInformation();
+    projectInformation.submit(contacts);
+  };
+  document.getElementById("addContactButton").onclick = () => {
+    contacts.addContact();
+  };
+  document.getElementById("contactsBack").onclick = () => {
+    projectInformation.display();
   };
 })();

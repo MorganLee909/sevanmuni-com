@@ -8,6 +8,8 @@
 }
 
 section{
+    display: flex;
+    flex-direction: column;
     max-width: 500px;
     margin: auto;
 }
@@ -44,8 +46,21 @@ h3{
     display: flex;
     justify-content: space-between;
     margin-top: 35px;
+    width: 100%;
+}
+
+.red{
+    background: red;
 }
 
 #projectInfoNext{
     margin-left: auto;
 }
+
+#contacts{
+    align-items: center;
+}
+
+    #contactsContainer{
+        width: 100%;
+    }

@@ -1,7 +1,16 @@
 const projectInformation = require("./projectInformation.js");
+const contacts = require("./contacts.js");
 
 data = {};
 interval = {};
+
+hideSections = ()=>{
+    let sections = document.querySelectorAll("section");
+
+    for(let i = 0; i < sections.length; i++){
+        sections[i].style.display = "none";
+    }
+}
 
 showBanner = (message, type)=>{
     let banner = document.getElementById("banner");
@@ -28,8 +37,7 @@ showBanner = (message, type)=>{
     }
 }
 
-document.getElementById("projectInfoForm").onsubmit = ()=>{
-    event.preventDefault();
-    projectInformation();
-    
-}
+document.getElementById("projectInfoForm").onsubmit = ()=>{projectInformation.submit(contacts)};
+
+document.getElementById("addContactButton").onclick = ()=>{contacts.addContact()};
+document.getElementById("contactsBack").onclick = ()=>{projectInformation.display()};
