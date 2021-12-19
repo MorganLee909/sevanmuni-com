@@ -57,18 +57,7 @@ const SiteSchema = new mongoose.Schema({
     contacts: [{
         department: String,
         title: String,
-        address: {
-            number: String,
-            street: String,
-            city: String,
-            county: String,
-            state: String,
-            zip: String,
-            country: String,
-            full: String,
-            lat: Number,
-            long: Number
-        },
+        address: String,
         phone: String,
         email: String
     }],

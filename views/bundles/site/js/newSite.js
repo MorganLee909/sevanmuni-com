@@ -65,6 +65,39 @@
           let template = document.getElementById("contactTemplate").content.children[0];
           let contact = template.cloneNode(true);
           container.appendChild(contact);
+        },
+        next: function(nextPage) {
+          let contacts2 = document.getElementById("contactsContainer").children;
+          let contactsTemp = [];
+          for (let i = 0; i < contacts2.length; i++) {
+            let phone = contacts2[i].querySelector(".contactPhone").value;
+            let email = contacts2[i].querySelector(".contactEmail").value;
+            if (phone === "" && email === "") {
+              showBanner("Must have phone or email address for each contact", "error");
+              return;
+            }
+            contactsTemp.push({
+              department: contacts2[i].querySelector(".contactDepartment").value,
+              title: contacts2[i].querySelector(".contactTitle").value,
+              address: contacts2[i].querySelector(".contactAddress").value,
+              phone,
+              email
+            });
+          }
+          data.contacts = contactsTemp;
+          nextPage.display();
+        }
+      };
+    }
+  });
+
+  // views/site/js/codeInformation.js
+  var require_codeInformation = __commonJS({
+    "views/site/js/codeInformation.js"(exports, module) {
+      module.exports = {
+        display: function() {
+          hideSections();
+          document.getElementById("codeInfo").style.display = "flex";
         }
       };
     }
@@ -73,6 +106,7 @@
   // views/site/js/newSite.js
   var projectInformation = require_projectInformation();
   var contacts = require_contacts();
+  var codeInformation = require_codeInformation();
   data = {};
   interval = {};
   hideSections = () => {
@@ -108,5 +142,11 @@
   };
   document.getElementById("contactsBack").onclick = () => {
     projectInformation.display();
+  };
+  document.getElementById("contactsNext").onclick = () => {
+    contacts.next(codeInformation);
+  };
+  document.getElementById("codeInfoBack").onclick = () => {
+    contacts.display();
   };
 })();

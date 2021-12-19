@@ -1,5 +1,6 @@
 const projectInformation = require("./projectInformation.js");
 const contacts = require("./contacts.js");
+const codeInformation = require("./codeInformation.js");
 
 data = {};
 interval = {};
@@ -41,3 +42,5 @@ document.getElementById("projectInfoForm").onsubmit = ()=>{projectInformation.su
 
 document.getElementById("addContactButton").onclick = ()=>{contacts.addContact()};
 document.getElementById("contactsBack").onclick = ()=>{projectInformation.display()};
+document.getElementById("contactsNext").onclick = ()=>{contacts.next(codeInformation)};
+document.getElementById("codeInfoBack").onclick = ()=>{contacts.display()};
