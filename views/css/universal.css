@@ -41,10 +41,16 @@ label input[type="number"]{
     width: 500px;
     position: fixed;
     top: 1px;
+    left: 50%;
+    margin-left: -250px;
     color: white;
     z-index: 10;
     text-align: center;
     padding: 10px;
+}
+
+.banner p{
+    margin: auto;
 }
 
 .errorBanner{
@@ -56,5 +62,5 @@ label input[type="number"]{
 }
 
 .warningBanner{
-    background: rgba(255, 255, 0, 0.85);
+    background: rgba(119, 113, 0, 0.85);
 }
