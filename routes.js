@@ -1,6 +1,8 @@
 const user = require("./controllers/user.js");
 const admin = require("./controllers/admin.js");
 const other = require("./controllers/other.js");
+const site = require("./controllers/site.js");
+
 const mid = require("./middleware.js");
 
 module.exports = (app)=>{
@@ -37,6 +39,8 @@ module.exports = (app)=>{
 
     //SITE
     app.get("/site/new", mid.auth("employee"), mid.banner, (req, res)=>res.render("site/newSite.ejs", {banner: res.locals.banner}));
+
+    app.post("/site/address", mid.auth("employee"), site.checkAddress);
 
     //OTHER
     app.get("/", mid.banner, (req, res)=>res.render("landingPage.ejs", {banner: res.locals.banner}));
