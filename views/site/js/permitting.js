@@ -35,7 +35,6 @@ module.exports = {
                 }
             })
             .catch((err)=>{
-                console.log(err);
                 showBanner("Something went wrong, please refresh the page", "error");
             })
     }

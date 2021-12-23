@@ -199,7 +199,6 @@
               window.location.href = `/site/${response.id}`;
             }
           }).catch((err) => {
-            console.log(err);
             showBanner("Something went wrong, please refresh the page", "error");
           });
         }

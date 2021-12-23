@@ -39,10 +39,10 @@ module.exports = (app)=>{
 
     //SITE
     app.get("/site/new", mid.auth("employee"), mid.banner, (req, res)=>res.render("site/newSite.ejs", {banner: res.locals.banner}));
-
-    app.post("/site/new", mid.auth("employee"), site.create);
+    app.get("/site/:id", mid.auth("employee"), mid.banner, site.display);
 
     app.post("/site/address", mid.auth("employee"), site.checkAddress);
+    app.post("/site/new", mid.auth("employee"), site.create);
 
     //OTHER
     app.get("/", mid.banner, (req, res)=>res.render("landingPage.ejs", {banner: res.locals.banner}));

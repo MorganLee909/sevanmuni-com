@@ -4,6 +4,26 @@ const axios = require("axios");
 
 module.exports = {
     /*
+    GET: display data for a single site
+    req.params.id = Site id
+    render: /site/display.ejs
+    */
+    display: function(req, res){
+        Site.findOne({_id: req.params.id})
+            .then((site)=>{
+                return res.render("site/display.ejs", {
+                    banner: res.locals.banner,
+                    site: site
+                });
+            })
+            .catch((err)=>{
+                req.session.banner = "error";
+                req.session.bannerMessage = "ERROR: unable to find that site";
+                return res.redirect("/user/dashboard");
+            });
+    },
+
+    /*
     POST: check entered address to find other sites in the same jurisdiction
     req.body = {
         address: String
