@@ -47,6 +47,7 @@ document.getElementById("contactsNext").onclick = ()=>{contacts.next(codeInforma
 document.getElementById("codeInfoBack").onclick = ()=>{contacts.display()};
 document.getElementById("codeInfoNext").onclick = ()=>{codeInformation.next(permitting)};
 document.getElementById("permittingBack").onclick = ()=>{codeInformation.display()};
+document.getElementById("permittingNext").onclick = ()=>{permitting.next()};
 
 let codeButtons = document.querySelectorAll(".codeSection");
 for(let i = 0; i < codeButtons.length; i++){
@@ -54,3 +55,5 @@ for(let i = 0; i < codeButtons.length; i++){
     let type = addButton.getAttribute("code");
     addButton.onclick = ()=>{codeInformation.addCode(type)};
 }
+
+permitting.display();

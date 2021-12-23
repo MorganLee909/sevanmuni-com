@@ -101,3 +101,23 @@ label{
 col{
     width: 150px;
 }
+
+#permitting{
+    max-width: none;
+}
+
+#permitting h2{
+    margin: auto;
+}
+
+#permitTable{
+    border-spacing: 15px;
+}
+
+#permitTable th{
+    max-width: 75px;
+}
+
+#permitTable input{
+    width: 100%;
+}

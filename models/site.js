@@ -79,7 +79,7 @@ const SiteSchema = new mongoose.Schema({
     applicablePermits: [{
         permit: String,
         sequence: String,
-        requirements: [String],
+        requirements: String,
         applicationFees: Number,
         permitFees: Number,
         reviewTime: Number

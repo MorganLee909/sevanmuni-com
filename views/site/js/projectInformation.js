@@ -10,6 +10,7 @@ module.exports = {
         try{
             data.propertyType = document.querySelector("input[name='propertyType']:checked").value;
         }catch(e){
+            showBanner("Please choose a property type", "error");
             return;
         }
         data.projectName = document.getElementById("projectName").value;
@@ -19,8 +20,6 @@ module.exports = {
         data.totalFootage = document.getElementById("totalFootage").value;
         data.footageMethod = document.getElementById("footageMethod").value;
 
-        // return nextPage.display();
-    
         showBanner("Searching for sites, please wait", "awaiting");
         fetch("/site/address", {
             method: "post",

@@ -16,6 +16,7 @@
           try {
             data.propertyType = document.querySelector("input[name='propertyType']:checked").value;
           } catch (e) {
+            showBanner("Please choose a property type", "error");
             return;
           }
           data.projectName = document.getElementById("projectName").value;
@@ -171,6 +172,20 @@
         display: function() {
           hideSections();
           document.getElementById("permitting").style.display = "flex";
+        },
+        next: function() {
+          let permits = document.getElementById("permitBody").children;
+          data.applicablePermits = [];
+          for (let i = 0; i < permits.length; i++) {
+            data.applicablePermits.push({
+              permit: permits[i].children[0].innerText,
+              sequence: permits[i].children[1].children[0].value,
+              requirements: permits[i].children[5].children[0].value,
+              applicationFees: parseFloat(permits[i].children[2].children[0].value),
+              permitFees: parseFloat(permits[i].children[3].children[0].value),
+              reviewTime: parseFloat(permits[i].children[4].children[0].value)
+            });
+          }
         }
       };
     }
@@ -229,6 +244,9 @@
   document.getElementById("permittingBack").onclick = () => {
     codeInformation.display();
   };
+  document.getElementById("permittingNext").onclick = () => {
+    permitting.next();
+  };
   var codeButtons = document.querySelectorAll(".codeSection");
   for (let i = 0; i < codeButtons.length; i++) {
     let addButton = codeButtons[i].querySelector(".codeAddBtn");
@@ -237,4 +255,5 @@
       codeInformation.addCode(type);
     };
   }
+  permitting.display();
 })();
