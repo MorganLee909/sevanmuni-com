@@ -27,7 +27,7 @@ module.exports = {
     /*
     POST: create a new site
     req.body = Site
-    redirect: /site/:id
+    response: {}
     */
     create: function(req, res){
         axios(`https://api.geocod.io/v1.7/geocode?q=${req.body.projectAddress}&api_key=${process.env.GEOENCODE_KEY}`)
@@ -67,7 +67,7 @@ module.exports = {
                 return site.save();
             })
             .then((site)=>{
-                return res.redirect(`/site/${site._id}`);
+                return res.json({id: site._id});
             })
             .catch((err)=>{
                 return res.json("ERROR: unable to save the site");

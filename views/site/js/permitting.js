@@ -18,7 +18,25 @@ module.exports = {
                 reviewTime: parseFloat(permits[i].children[4].children[0].value)
             });
         }
-        
-        console.log(data);
+
+        fetch("/site/new", {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+            .then(r=>r.json())
+            .then((response)=>{
+                if(typeof(response) === "string"){
+                    showBanner(response, "error");
+                }else{
+                    window.location.href = `/site/${response.id}`;
+                }
+            })
+            .catch((err)=>{
+                console.log(err);
+                showBanner("Something went wrong, please refresh the page", "error");
+            })
     }
 }
