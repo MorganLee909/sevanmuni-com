@@ -73,7 +73,9 @@ const SiteSchema = new mongoose.Schema({
         other: [String]
     },
     requirementsADA: [String],
+    reviewIssuesADA: [String],
     requirementsWC: [String],
+    concernsADA: [String],
     applicablePermits: [{
         permit: String,
         sequence: String,

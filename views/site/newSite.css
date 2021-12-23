@@ -88,3 +88,16 @@ label{
 .codeInput{
     margin: 15px;
 }
+
+.smallText{
+    font-size: 12px;
+}
+
+#toiletBody input{
+    width: 100%;
+    font-size: 22px;
+}
+
+col{
+    width: 150px;
+}
