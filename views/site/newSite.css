@@ -34,10 +34,6 @@ label{
     margin-right: 10px;
 }
 
-h3{
-    border-top: 2px solid black;
-}
-
 .endSection{
     border-bottom: 2px solid black;
 }
@@ -68,3 +64,27 @@ h3{
     #contactsContainer{
         width: 100%;
     }
+
+.codeSection{
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+}
+
+.codeSection > div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.codeAddBtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
+}
+
+.codeInput{
+    margin: 15px;
+}

@@ -101,6 +101,12 @@
         display: function() {
           hideSections();
           document.getElementById("codeInfo").style.display = "flex";
+        },
+        addCode: function(type) {
+          let container = document.getElementById(`${type}Codes`);
+          let input = document.createElement("textarea");
+          input.classList.add("codeInput");
+          container.appendChild(input);
         }
       };
     }
@@ -152,4 +158,12 @@
   document.getElementById("codeInfoBack").onclick = () => {
     contacts.display();
   };
+  var codeButtons = document.querySelectorAll(".codeSection");
+  for (let i = 0; i < codeButtons.length; i++) {
+    let addButton = codeButtons[i].querySelector(".codeAddBtn");
+    let type = addButton.getAttribute("code");
+    addButton.onclick = () => {
+      codeInformation.addCode(type);
+    };
+  }
 })();

@@ -44,3 +44,10 @@ document.getElementById("addContactButton").onclick = ()=>{contacts.addContact()
 document.getElementById("contactsBack").onclick = ()=>{projectInformation.display()};
 document.getElementById("contactsNext").onclick = ()=>{contacts.next(codeInformation)};
 document.getElementById("codeInfoBack").onclick = ()=>{contacts.display()};
+
+let codeButtons = document.querySelectorAll(".codeSection");
+for(let i = 0; i < codeButtons.length; i++){
+    let addButton = codeButtons[i].querySelector(".codeAddBtn");
+    let type = addButton.getAttribute("code");
+    addButton.onclick = ()=>{codeInformation.addCode(type)};
+}

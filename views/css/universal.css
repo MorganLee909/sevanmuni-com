@@ -32,6 +32,10 @@ label input[type="number"]{
     background: rgb(70, 148, 72);
 }
 
+.button:active{
+    background: rgb(34, 112, 36);
+}
+
 .logoLink{
     display: flex;
     justify-content: center;
