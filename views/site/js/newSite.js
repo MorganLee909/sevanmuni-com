@@ -55,5 +55,3 @@ for(let i = 0; i < codeButtons.length; i++){
     let type = addButton.getAttribute("code");
     addButton.onclick = ()=>{codeInformation.addCode(type)};
 }
-
-permitting.display();

@@ -18,5 +18,7 @@ module.exports = {
                 reviewTime: parseFloat(permits[i].children[4].children[0].value)
             });
         }
+        
+        console.log(data);
     }
 }

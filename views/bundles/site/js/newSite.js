@@ -186,6 +186,7 @@
               reviewTime: parseFloat(permits[i].children[4].children[0].value)
             });
           }
+          console.log(data);
         }
       };
     }
@@ -255,5 +256,4 @@
       codeInformation.addCode(type);
     };
   }
-  permitting.display();
 })();
