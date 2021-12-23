@@ -1,6 +1,7 @@
 const projectInformation = require("./projectInformation.js");
 const contacts = require("./contacts.js");
 const codeInformation = require("./codeInformation.js");
+const permitting = require("./permitting.js");
 
 data = {};
 interval = {};
@@ -44,6 +45,8 @@ document.getElementById("addContactButton").onclick = ()=>{contacts.addContact()
 document.getElementById("contactsBack").onclick = ()=>{projectInformation.display()};
 document.getElementById("contactsNext").onclick = ()=>{contacts.next(codeInformation)};
 document.getElementById("codeInfoBack").onclick = ()=>{contacts.display()};
+document.getElementById("codeInfoNext").onclick = ()=>{codeInformation.next(permitting)};
+document.getElementById("permittingBack").onclick = ()=>{codeInformation.display()};
 
 let codeButtons = document.querySelectorAll(".codeSection");
 for(let i = 0; i < codeButtons.length; i++){

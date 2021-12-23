@@ -19,7 +19,7 @@ module.exports = {
         data.totalFootage = document.getElementById("totalFootage").value;
         data.footageMethod = document.getElementById("footageMethod").value;
 
-        return nextPage.display();
+        // return nextPage.display();
     
         showBanner("Searching for sites, please wait", "awaiting");
         fetch("/site/address", {

@@ -70,7 +70,7 @@ const SiteSchema = new mongoose.Schema({
         mechanical: [String],
         energy: [String],
         accessibility: [String],
-        other: [String]
+        health: [String]
     },
     requirementsADA: [String],
     reviewIssuesADA: [String],
