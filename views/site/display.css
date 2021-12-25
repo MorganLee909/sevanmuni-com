@@ -9,6 +9,52 @@
     box-sizing: border-box;
 }
 
+table{
+    border-collapse: collapse;
+}
+
+h1, h2{
+    margin: auto;
+    margin-bottom: 15px;
+}
+
+h1{
+    font-size: 40px;
+}
+
+h2{
+    font-size: 30px;
+}
+
+th, td{
+    border: 1px solid black;
+    padding: 5px;
+    font-size: 18px;
+}
+
+p{
+    font-size: 18px;
+    padding: 10px 35px;
+}
+
 .endSection{
     border-bottom: 2px solid black;
+    margin: 5px 0;
+}
+
+.thiccBoi{
+    border-bottom: 4px solid black;
+    margin: 15px 0;
+}
+
+.buttonBox{
+    display: flex;
+    justify-content: space-between;
+    margin: 15px;
+}
+
+@media print{
+    .buttonBox{
+        display: none;
+    }
 }
