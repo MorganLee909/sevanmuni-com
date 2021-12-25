@@ -24,10 +24,12 @@
           data.projectNumber = document.getElementById("projectNumber").value;
           data.phone = document.getElementById("phone").value;
           data.parkingSpaces = document.getElementById("parkingSpaces").value;
-          data.patioFootage = document.getElementById("patioFootage").value;
-          data.diningFootage = document.getElementById("diningFootage").value;
-          data.totalFootage = document.getElementById("totalFootage").value;
-          data.footageMethod = document.getElementById("footageMethod").value;
+          data.squareFootage = {
+            patio: document.getElementById("patioFootage").value,
+            diningRoom: document.getElementById("diningFootage").value,
+            total: document.getElementById("totalFootage").value,
+            verificationMethod: document.getElementById("footageMethod").value
+          };
           data.surveyDate = document.getElementById("surveyDate").valueAsDate;
           showBanner("Searching for sites, please wait", "awaiting");
           fetch("/site/address", {

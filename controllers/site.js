@@ -71,12 +71,7 @@ module.exports = {
                     },
                     propertyType: req.body.propertyType,
                     surveryDate: new Date(req.body.surveyDate),
-                    squareFootage: {
-                        patio: req.body.patioFootage,
-                        diningRoom: req.body.diningFootage,
-                        total: req.body.totalFootage,
-                        verificationMethod: req.body.footageMethod,
-                    },
+                    squareFootage: req.body.squareFootagex,
                     parkingSpaces: req.body.parkingSpaces,
                     existingWC: req.body.existingWC,
                     contacts: req.body.contacts,
