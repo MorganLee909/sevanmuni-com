@@ -14,6 +14,8 @@ module.exports = {
             return;
         }
         data.projectName = document.getElementById("projectName").value;
+        data.projectNumber = document.getElementById("projectNumber").value;
+        data.phone = document.getElementById("phone").value;
         data.projectAddress = document.getElementById("projectAddress").value;
         data.patioFootage = document.getElementById("patioFootage").value;
         data.diningFootage = document.getElementById("diningFootage").value;

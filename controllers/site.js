@@ -56,6 +56,8 @@ module.exports = {
 
                 let site = new Site({
                     projectName: req.body.projectName,
+                    projectNumber: req.body.projectNumber,
+                    phone: req.body.phone,
                     address: {
                         number: add.address_components.number,
                         street: add.address_components.formatted_street,
