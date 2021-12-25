@@ -77,6 +77,7 @@ module.exports = {
                         total: req.body.totalFootage,
                         verificationMethod: req.body.footageMethod,
                     },
+                    parkingSpaces: req.body.parkingSpaces,
                     existingWC: req.body.existingWC,
                     contacts: req.body.contacts,
                     lastUpdate: new Date(),

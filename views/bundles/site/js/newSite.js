@@ -20,9 +20,10 @@
             return;
           }
           data.projectName = document.getElementById("projectName").value;
+          data.projectAddress = document.getElementById("projectAddress").value;
           data.projectNumber = document.getElementById("projectNumber").value;
           data.phone = document.getElementById("phone").value;
-          data.projectAddress = document.getElementById("projectAddress").value;
+          data.parkingSpaces = document.getElementById("parkingSpaces").value;
           data.patioFootage = document.getElementById("patioFootage").value;
           data.diningFootage = document.getElementById("diningFootage").value;
           data.totalFootage = document.getElementById("totalFootage").value;
