@@ -32,7 +32,7 @@
           };
           data.surveyDate = document.getElementById("surveyDate").valueAsDate;
           data.preparedBy = {
-            date: document.getElementById("preparedByDate").valueAsDate,
+            date: document.getElementById("preparedDate").valueAsDate,
             architectName: document.getElementById("preparedByArchitect").value,
             engineerName: document.getElementById("preparedByEngineer").value
           };
@@ -195,9 +195,9 @@
             let reviewTime = parseFloat(permits[i].children[4].children[0].value);
             if (!sequence && !requirements && !applicationFees && !permitFees && !reviewTime)
               continue;
-            applicationFees = applicationFees === "" ? applicationFees : 0;
-            permitFees = permitFees === "" ? permitFees : 0;
-            reviewTime = reviewTime === "" ? reviewtime : 0;
+            applicationFees = applicationFees === "" ? 0 : applicationFees;
+            permitFees = permitFees === "" ? 0 : permitFees;
+            reviewTime = reviewTime === "" ? 0 : reviewTime;
             data.applicablePermits.push({
               permit: permits[i].children[0].innerText,
               sequence,
@@ -212,6 +212,7 @@
           for (let i = 1; i < thirdParty.length; i++) {
             data.thirdPartyReviews.push(thirdParty[i].value);
           }
+          return;
           fetch("/site/new", {
             method: "post",
             headers: {

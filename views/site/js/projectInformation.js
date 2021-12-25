@@ -26,7 +26,7 @@ module.exports = {
         };
         data.surveyDate = document.getElementById("surveyDate").valueAsDate;
         data.preparedBy = {
-            date: document.getElementById("preparedByDate").valueAsDate,
+            date: document.getElementById("preparedDate").valueAsDate,
             architectName: document.getElementById("preparedByArchitect").value,
             engineerName: document.getElementById("preparedByEngineer").value
         }

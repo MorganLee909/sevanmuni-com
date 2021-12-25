@@ -23,9 +23,9 @@ module.exports = {
                 !reviewTime
             ) continue;
 
-            applicationFees = applicationFees === "" ? applicationFees : 0;
-            permitFees = permitFees === "" ? permitFees : 0;
-            reviewTime = reviewTime === "" ? reviewtime : 0;
+            applicationFees = applicationFees === "" ? 0 : applicationFees;
+            permitFees = permitFees === "" ? 0 : permitFees;
+            reviewTime = reviewTime === "" ? 0 : reviewTime;
 
             data.applicablePermits.push({
                 permit: permits[i].children[0].innerText,
@@ -42,6 +42,8 @@ module.exports = {
         for(let i = 1; i < thirdParty.length; i++){
             data.thirdPartyReviews.push(thirdParty[i].value);
         }
+
+        return;
 
         fetch("/site/new", {
             method: "post",

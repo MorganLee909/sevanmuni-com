@@ -22,7 +22,7 @@ const SiteSchema = new mongoose.Schema({
         long: Number
     },
     propertyType: String,
-    surveryDate: Date,
+    surveyDate: Date,
     squareFootage: {
         patio: Number,
         diningRoom: Number,

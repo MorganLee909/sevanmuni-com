@@ -17,6 +17,7 @@ module.exports = {
                 });
             })
             .catch((err)=>{
+                console.error(err);
                 req.session.banner = "error";
                 req.session.bannerMessage = "ERROR: unable to find that site";
                 return res.redirect("/user/dashboard");
@@ -72,8 +73,8 @@ module.exports = {
                         full: add.formatted_address
                     },
                     propertyType: req.body.propertyType,
-                    surveryDate: new Date(req.body.surveyDate),
-                    squareFootage: req.body.squareFootagex,
+                    surveyDate: new Date(req.body.surveyDate),
+                    squareFootage: req.body.squareFootage,
                     parkingSpaces: req.body.parkingSpaces,
                     existingWC: req.body.existingWC,
                     contacts: req.body.contacts,
@@ -92,6 +93,7 @@ module.exports = {
                 return res.json({id: site._id});
             })
             .catch((err)=>{
+                console.error(err);
                 return res.json("ERROR: unable to save the site");
             });
     }
