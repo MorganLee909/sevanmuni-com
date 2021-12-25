@@ -43,8 +43,6 @@ module.exports = {
             data.thirdPartyReviews.push(thirdParty[i].value);
         }
 
-        return;
-
         fetch("/site/new", {
             method: "post",
             headers: {
