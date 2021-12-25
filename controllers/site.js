@@ -67,7 +67,8 @@ module.exports = {
                         zip: add.address_components.zip,
                         country: add.address_components.country,
                         lat: add.location.lat,
-                        long: add.location.long
+                        long: add.location.long,
+                        full: add.formatted_address
                     },
                     propertyType: req.body.propertyType,
                     surveryDate: new Date(req.body.surveyDate),
