@@ -26,6 +26,12 @@
 
             <p>Property Type: <%=site.propertyType%></p>
 
+            <p>Date Prepared: <%=new Date(site.preparedBy.date).toLocaleDateString()%></p>
+
+            <p>Prepared By (Architect): <%=site.preparedBy.architectName%></p>
+
+            <p>Prepared By (Engineer): <%=site.preparedBy.engineerName%></p>
+
             <h3>Tenant Lease Square Footage</h3>
 
             <p>Patio: <%=site.squareFootage.patio%></p>

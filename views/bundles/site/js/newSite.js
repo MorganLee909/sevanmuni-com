@@ -31,6 +31,11 @@
             verificationMethod: document.getElementById("footageMethod").value
           };
           data.surveyDate = document.getElementById("surveyDate").valueAsDate;
+          data.preparedBy = {
+            date: document.getElementById("preparedByDate").valueAsDate,
+            architectName: document.getElementById("preparedByArchitect").value,
+            engineerName: document.getElementById("preparedByEngineer").value
+          };
           showBanner("Searching for sites, please wait", "awaiting");
           fetch("/site/address", {
             method: "post",

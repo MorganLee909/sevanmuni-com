@@ -4,6 +4,11 @@ const SiteSchema = new mongoose.Schema({
     projectName: String,
     projectNumber: String,
     phone: String,
+    preparedBy: {
+        date: Date,
+        architectName: String,
+        engineerName: String
+    },
     address: {
         number: String,
         street: String,
