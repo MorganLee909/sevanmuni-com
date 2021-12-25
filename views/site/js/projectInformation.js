@@ -21,6 +21,7 @@ module.exports = {
         data.diningFootage = document.getElementById("diningFootage").value;
         data.totalFootage = document.getElementById("totalFootage").value;
         data.footageMethod = document.getElementById("footageMethod").value;
+        data.surveyDate = document.getElementById("surveyDate").valueAsDate;
 
         showBanner("Searching for sites, please wait", "awaiting");
         fetch("/site/address", {

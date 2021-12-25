@@ -70,6 +70,7 @@ module.exports = {
                         long: add.location.long
                     },
                     propertyType: req.body.propertyType,
+                    surveryDate: new Date(req.body.surveyDate),
                     squareFootage: {
                         patio: req.body.patioFootage,
                         diningRoom: req.body.diningFootage,

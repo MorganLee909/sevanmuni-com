@@ -12,7 +12,8 @@ label{
 label input[type="text"],
 label input[type="email"],
 label input[type="password"],
-label input[type="number"]{
+label input[type="number"],
+label input[type="date"]{
     height: 35px;
     font-size: 16px;
 }
