@@ -10,7 +10,6 @@
         <div id="contents">
             <h1><%=site.projectName%></h1>
 
-
             <div class="thiccBoi"></div>
 
             <h2>Project Information</h2>
@@ -198,6 +197,12 @@
                     <% } %>
                 </tbody>
             </table>
+
+            <h3>Required third party reviews:</h3>
+
+            <% for(let i = 0; i < site.thirdPartyReviews.length; i++){ %>
+                <p><%=site.thirdPartyReviews[i]%></p>
+            <% } %>
 
             <div class="buttonBox">
                 <a href="/user/dashboard" class="button">To Dashboard</a>

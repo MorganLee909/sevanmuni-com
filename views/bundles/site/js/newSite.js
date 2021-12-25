@@ -202,6 +202,11 @@
               reviewTime
             });
           }
+          let thirdParty = document.getElementById("thirdPartyReviewCodes").children;
+          data.thirdPartyReviews = [];
+          for (let i = 1; i < thirdParty.length; i++) {
+            data.thirdPartyReviews.push(thirdParty[i].value);
+          }
           fetch("/site/new", {
             method: "post",
             headers: {

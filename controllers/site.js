@@ -80,7 +80,8 @@ module.exports = {
                     requirementsADA: req.body.requirementsADA,
                     reviewIssuesADA: req.body.reviewIssuesADA,
                     concernsADA: req.body.concernsADA,
-                    applicablePermits: req.body.applicablePermits
+                    applicablePermits: req.body.applicablePermits,
+                    thirdPartyReviews: req.body.thirdPartyReviews
                 });
 
                 return site.save();
