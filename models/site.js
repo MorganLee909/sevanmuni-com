@@ -65,7 +65,7 @@ const SiteSchema = new mongoose.Schema({
     codes: {
         building: [String],
         fire: [String],
-        pumbing: [String],
+        plumbing: [String],
         electrical: [String],
         mechanical: [String],
         energy: [String],

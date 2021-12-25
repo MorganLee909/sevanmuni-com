@@ -9,13 +9,31 @@ module.exports = {
         data.applicablePermits = [];
         
         for(let i = 0; i < permits.length; i++){
+            let sequence = permits[i].children[1].children[0].value;
+            let requirements = permits[i].children[5].children[0].value;
+            let applicationFees = parseFloat(permits[i].children[2].children[0].value);
+            let permitFees = parseFloat(permits[i].children[3].children[0].value);
+            let reviewTime = parseFloat(permits[i].children[4].children[0].value);
+            
+            if(
+                !sequence &&
+                !requirements &&
+                !applicationFees &&
+                !permitFees &&
+                !reviewTime
+            ) continue;
+
+            applicationFees = applicationFees === "" ? applicationFees : 0;
+            permitFees = permitFees === "" ? permitFees : 0;
+            reviewTime = reviewTime === "" ? reviewtime : 0;
+
             data.applicablePermits.push({
                 permit: permits[i].children[0].innerText,
-                sequence: permits[i].children[1].children[0].value,
-                requirements: permits[i].children[5].children[0].value,
-                applicationFees: parseFloat(permits[i].children[2].children[0].value),
-                permitFees: parseFloat(permits[i].children[3].children[0].value),
-                reviewTime: parseFloat(permits[i].children[4].children[0].value)
+                sequence: sequence,
+                requirements: requirements,
+                applicationFees: applicationFees,
+                permitFees: permitFees,
+                reviewTime: reviewTime
             });
         }
 

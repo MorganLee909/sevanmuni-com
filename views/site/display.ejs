@@ -2,10 +2,191 @@
 <html lang="en">
     <head>
         <%- include("../components/head.ejs") %>
+        <link rel="stylesheet" href="/site/display.css">
     </head>
     <body>
         <%- include("../components/banner.ejs") %>
 
-        <h1>Site Display</h1>
+        <div id="contents">
+            <h1><%=site.projectName%></h1>
+
+            <h2>Project Information</h2>
+
+            <p>Property Type: <%=site.propertyType%></p>
+
+            <div class="endSection"></div>
+
+            <h3>Tenant Lease Square Footage</h3>
+
+            <p>Patio: <%=site.squareFootage.patio%></p>
+
+            <p>Dining Room / BOH: <%=site.squareFootage.diningRoom%></p>
+
+            <p>Total: <%=site.squareFootage.total%></p>
+
+            <p>Verification Method: <%=site.squareFootage.verificationMethod%></p>
+
+            <div class="endSection"></div>
+            
+            <h2>Contacts</h2>
+
+            <table id="contacts">
+                <thead>
+                    <tr>
+                        <th>Department</th>
+                        <th>Title</th>
+                        <th>Address</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(let i = 0; i < site.contacts.length; i++){ %>
+                        <tr>
+                            <td><%=site.contacts[i].department%></td>
+                            <td><%=site.contacts[i].title%></td>
+                            <td><%=site.contacts[i].address%></td>
+                            <td><%=site.contacts[i].phone%></td>
+                            <td><%=site.contacts[i].email%></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+
+            <h2>Code Information</h2>
+
+            <h3>Building Codes:</h3>
+            <% for(let i = 0; i < site.codes.building.length; i++){ %>
+                <p><%=site.codes.building[i]%></p>
+            <% } %>
+
+            <h3>Fire Codes:</h3>
+            <% for(let i = 0; i < site.codes.fire.length; i++){ %>
+                <p><%=site.codes.fire[i]%></p>
+            <% } %>
+
+            <h3>Plumbing Codes:</h3>
+            <% for(let i = 0; i < site.codes.plumbing.length; i++){ %>
+                <p><%=site.codes.plumbing[i]%></p>
+            <% } %>
+
+            <h3>Electrical Codes:</h3>
+            <% for(let i = 0; i < site.codes.electrical.length; i++){ %>
+                <p><%=site.codes.electrical[i]%></p>
+            <% } %>
+
+            <h3>Mechanical Codes:</h3>
+            <% for(let i = 0; i < site.codes.mechanical.length; i++){ %>
+                <p><%=site.codes.mechanical[i]%></p>
+            <% } %>
+
+            <h3>Energy Codes:</h3>
+            <% for(let i = 0; i < site.codes.energy.length; i++){ %>
+                <p><%=site.codes.energy[i]%></p>
+            <% } %>
+
+            <h3>Accessibility Codes:</h3>
+            <% for(let i = 0; i < site.codes.accessibility.length; i++){ %>
+                <p><%=site.codes.accessibility[i]%></p>
+            <% } %>
+
+            <h3>Health / Food Codes:</h3>
+            <% for(let i = 0; i < site.codes.health.length; i++){ %>
+                <p><%=site.codes.health[i]%></p>
+            <% } %>
+
+            <div class="endSection"></div>
+
+            <h3>ADA Requirements</h3>
+
+            <h4> local ADA ordinances in excess of the Federal ADA Guidelines:</h4>
+            <% for(let i = 0; i < site.requirementsADA.length; i++){ %>
+                <p><%=site.requirementsADA[i]%></p>
+            <% } %>
+            
+            <h4>Issues noted on site that require further review:</h4>
+            <% for(let i = 0; i < site.reviewIssuesADA.length; i++) { %>
+                <p><%=site.reviewIssuesADA[i]%></p>
+            <% } %>
+
+            <div class="endSection"></div>
+
+            <h3>Restroom Requirements</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Occupancy Count</th>
+                        <th>Lavatories</th>
+                        <th>Toilets</th>
+                        <th>Urinals</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Men</td>
+                        <td><%=site.existingWC.men.occupancyCount%></td>
+                        <td><%=site.existingWC.men.lavatories%></td>
+                        <td><%=site.existingWC.men.toilets%></td>
+                        <td><%=site.existingWC.men.urinals%></td>
+                    </tr>
+                    <tr>
+                        <td>Women</td>
+                        <td><%=site.existingWC.women.occupancyCount%></td>
+                        <td><%=site.existingWC.women.lavatories%></td>
+                        <td><%=site.existingWC.women.toilets%></td>
+                        <td><%=site.existingWC.women.urinals%></td>
+                    </tr>
+                    <tr>
+                        <td>Unisex</td>
+                        <td><%=site.existingWC.unisex.occupancyCount%></td>
+                        <td><%=site.existingWC.unisex.lavatories%></td>
+                        <td><%=site.existingWC.unisex.toilets%></td>
+                        <td><%=site.existingWC.unisex.urinals%></td>
+                    </tr>
+                    <tr>
+                        <td>Employee Only</td>
+                        <td><%=site.existingWC.employee.occupancyCount%></td>
+                        <td><%=site.existingWC.employee.lavatories%></td>
+                        <td><%=site.existingWC.employee.toilets%></td>
+                        <td><%=site.existingWC.employee.urinals%></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>ADA concerns in existing restrooms:</h4>
+            <% for(let i = 0; i < site.concernsADA.length; i++){ %>
+                <p><%=site.concernsADA[i]%></p>
+            <% } %>
+
+            <div class="endSection"></div>
+
+            <h2>Permitting</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Permit</th>
+                        <th>Sequence</th>
+                        <th>Requirements</th>
+                        <th>Review / Application Fees</th>
+                        <th>Permit / License Fees</th>
+                        <th>Review Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(let i = 0; i < site.applicablePermits.length; i++){ %>
+                        <tr>
+                            <td><%=site.applicablePermits[i].permit%></td>
+                            <td><%=site.applicablePermits[i].sequence%></td>
+                            <td><%=site.applicablePermits[i].requirements%></td>
+                            <td>$<%=site.applicablePermits[i].applicationFees%></td>
+                            <td>$<%=site.applicablePermits[i].permitFees%></td>
+                            <td><%=site.applicablePermits[i].reviewTime%></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
     </body>
 </html>

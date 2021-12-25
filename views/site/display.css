@@ -1,0 +1,14 @@
+#contents{
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
+    background: rgb(241, 241, 241);
+    min-height: 100vh;
+    margin: auto;
+    padding: 50px 25px;
+    box-sizing: border-box;
+}
+
+.endSection{
+    border-bottom: 2px solid black;
+}
